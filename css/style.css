@@ -3318,47 +3318,48 @@ textarea:focus-visible {
 .hero-info-card::after {
   content: "";
   position: absolute;
-  inset: -1.5px;
+  inset: -2px;
   border-radius: inherit;
-  padding: 1.5px;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 150deg,
-    rgba(160, 205, 245, 0.05) 195deg,
-    rgba(160, 205, 245, 0.22) 250deg,
-    rgba(190, 222, 250, 0.5) 305deg,
-    rgba(224, 240, 255, 0.82) 340deg,
-    rgba(210, 233, 255, 0.92) 353deg,
-    rgba(160, 205, 245, 0.4) 360deg
+  padding: 2.5px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(180, 218, 250, 0.5) 32%,
+    #ffffff 50%,
+    rgba(180, 218, 250, 0.5) 68%,
+    transparent 100%
   );
+  background-size: 220% 100%;
+  background-position: 140% 0;
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
-  filter: blur(1px);
-  opacity: 0.85;
-  animation: heroCardGlowSpin 7s linear infinite;
+  filter: blur(0.6px);
+  opacity: 1;
+  animation: heroCardGlowWave 4.5s ease-in-out infinite;
   pointer-events: none;
   z-index: 2;
 }
 
 .hero-info-card.is-accent::after {
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 150deg,
-    rgba(90, 210, 155, 0.05) 195deg,
-    rgba(90, 210, 155, 0.22) 250deg,
-    rgba(150, 232, 195, 0.5) 305deg,
-    rgba(211, 251, 230, 0.82) 340deg,
-    rgba(190, 246, 217, 0.92) 353deg,
-    rgba(90, 210, 155, 0.4) 360deg
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(120, 224, 175, 0.5) 32%,
+    #eafff3 50%,
+    rgba(120, 224, 175, 0.5) 68%,
+    transparent 100%
   );
+  background-size: 220% 100%;
+  background-position: 140% 0;
 }
 
-@keyframes heroCardGlowSpin {
-  to {
-    transform: rotate(360deg);
+@keyframes heroCardGlowWave {
+  0% {
+    background-position: 140% 0;
+  }
+  100% {
+    background-position: -40% 0;
   }
 }
 
