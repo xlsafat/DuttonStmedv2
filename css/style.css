@@ -3297,3 +3297,64 @@ textarea:focus-visible {
     font-size: 17px;
   }
 }
+
+/* Animated border glow for the hero info cards (Location / Opening Hours /
+   Bulk Billing). The existing border, background, and layout are untouched -
+   this is an extra layer that sits on top, masked down to just the border
+   ring so it never covers the card's text. */
+.hero-info-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero-info-card::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  padding: 2.5px;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 195deg,
+    rgba(191, 224, 247, 0.1) 230deg,
+    rgba(191, 224, 247, 0.5) 280deg,
+    rgba(255, 255, 255, 0.9) 335deg,
+    #ffffff 355deg,
+    rgba(255, 255, 255, 0.7) 360deg
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  filter: blur(1.5px);
+  opacity: 0.95;
+  animation: heroCardGlowSpin 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-info-card.is-accent::after {
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 195deg,
+    rgba(0, 172, 71, 0.12) 230deg,
+    rgba(126, 232, 184, 0.55) 280deg,
+    rgba(211, 251, 230, 0.95) 335deg,
+    #eafff3 355deg,
+    rgba(0, 172, 71, 0.7) 360deg
+  );
+}
+
+@keyframes heroCardGlowSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-info-card::after {
+    animation: none;
+    opacity: 0;
+  }
+}
