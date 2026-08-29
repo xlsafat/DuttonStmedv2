@@ -156,7 +156,7 @@
 					</div>
 					<div class="hero-info-card">
 						<span class="hero-info-label">Opening Hours</span>
-						<div class="hero-info-value">Mon&ndash;Fri 9am&ndash;5pm &middot; Sat&ndash;Sun 9am&ndash;6pm</div>
+						<div class="hero-info-value">Mon&ndash;Fri 9am&ndash;5pm &middot; Sat&ndash;Sun 8am&ndash;2pm</div>
 					</div>
 					<div class="hero-info-card is-accent">
 						<span class="hero-info-label">Bulk Billing</span>
@@ -201,10 +201,15 @@
                         </div>
                     </div>
                     <ul class="list-unstyled working-hours-list">
-                        <li class="d-flex justify-content-between"><span>Monday - Friday</span> <span>9:00 AM - 5:00 PM</span></li>
-                        <li class="d-flex justify-content-between"><span>Saturday - Sunday</span> <span>9:00 AM - 6:00 PM</span></li>
-                        
+                        <li data-days="mon" class="d-flex justify-content-between"><span>Monday</span> <span>9:00 AM &ndash; 5:00 PM<span class="after-hours-tag">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
+                        <li data-days="tue" class="d-flex justify-content-between"><span>Tuesday</span> <span>9:00 AM &ndash; 5:00 PM</span></li>
+                        <li data-days="wed" class="d-flex justify-content-between"><span>Wednesday</span> <span>9:00 AM &ndash; 5:00 PM</span></li>
+                        <li data-days="thu" class="d-flex justify-content-between"><span>Thursday</span> <span>9:00 AM &ndash; 5:00 PM<span class="after-hours-tag">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
+                        <li data-days="fri" class="d-flex justify-content-between"><span>Friday</span> <span>9:00 AM &ndash; 5:00 PM</span></li>
+                        <li data-days="sat" class="d-flex justify-content-between"><span>Saturday</span> <span>8:00 AM &ndash; 2:00 PM</span></li>
+                        <li data-days="sun" class="d-flex justify-content-between"><span>Sunday</span> <span>8:00 AM &ndash; 2:00 PM</span></li>
                     </ul>
+                    <p class="mt-3 mb-0" style="font-size: 14px; color: var(--muted);">Need care outside these hours? See our <a href="afterhours.html">After Hours service</a>.</p>
                 </div>
             </div>
         </div>
@@ -661,7 +666,7 @@
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-2" class="collapse faq-answer">
-                            <p>We're open Monday&ndash;Friday 9:00&nbsp;AM&ndash;5:00&nbsp;PM and Saturday&ndash;Sunday 9:00&nbsp;AM&ndash;6:00&nbsp;PM.</p>
+                            <p>We're open Monday&ndash;Friday 9:00&nbsp;AM&ndash;5:00&nbsp;PM and Saturday&ndash;Sunday 8:00&nbsp;AM&ndash;2:00&nbsp;PM. We also offer extended evening hours on Monday and Thursday from 6:00&nbsp;PM&ndash;11:00&nbsp;PM through our After Hours service.</p>
                         </div>
                     </div>
 
@@ -816,11 +821,16 @@
 				<div class="opening-hours-card">
 					<div class="opening-hours-header">Opening Hours</div>
 					<ul class="list-unstyled opening-hours-table">
-						<li data-days="mon,tue,wed,thu,fri" class="d-flex justify-content-between"><span>Monday &ndash; Friday</span><span>9:00 AM &ndash; 5:00 PM</span></li>
-						<li data-days="sat,sun" class="d-flex justify-content-between"><span>Saturday &ndash; Sunday</span><span>9:00 AM &ndash; 6:00 PM</span></li>
+						<li data-days="mon" class="d-flex justify-content-between"><span>Monday</span><span>9:00 AM &ndash; 5:00 PM<span class="after-hours-tag">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
+						<li data-days="tue" class="d-flex justify-content-between"><span>Tuesday</span><span>9:00 AM &ndash; 5:00 PM</span></li>
+						<li data-days="wed" class="d-flex justify-content-between"><span>Wednesday</span><span>9:00 AM &ndash; 5:00 PM</span></li>
+						<li data-days="thu" class="d-flex justify-content-between"><span>Thursday</span><span>9:00 AM &ndash; 5:00 PM<span class="after-hours-tag">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
+						<li data-days="fri" class="d-flex justify-content-between"><span>Friday</span><span>9:00 AM &ndash; 5:00 PM</span></li>
+						<li data-days="sat" class="d-flex justify-content-between"><span>Saturday</span><span>8:00 AM &ndash; 2:00 PM</span></li>
+						<li data-days="sun" class="d-flex justify-content-between"><span>Sunday</span><span>8:00 AM &ndash; 2:00 PM</span></li>
 					</ul>
 					<div class="opening-hours-note">
-						<strong>Bulk billing.</strong> All consultations are 100% bulk billed for patients with a valid Medicare card.
+						<strong>Bulk billing.</strong> All consultations are 100% bulk billed for patients with a valid Medicare card. Need care outside these hours? See our <a href="afterhours.html">After Hours service</a>.
 					</div>
 				</div>
 			</div>
@@ -955,7 +965,7 @@
       (function () {
         var days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
         var today = days[new Date().getDay()];
-        document.querySelectorAll('.opening-hours-table li[data-days]').forEach(function (li) {
+        document.querySelectorAll('.opening-hours-table li[data-days], .working-hours-list li[data-days]').forEach(function (li) {
           if (li.getAttribute('data-days').split(',').indexOf(today) !== -1) {
             li.classList.add('is-today');
           }

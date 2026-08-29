@@ -115,6 +115,15 @@ html {
 .working-hours-list li span:last-child {
     color: var(--ink);
     font-weight: 700;
+    text-align: right;
+}
+
+.working-hours-list li.is-today {
+    background: rgba(0, 172, 71, 0.1);
+    margin: 0 -16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    border-radius: 8px;
 }
 
 /*home care*/
@@ -2740,6 +2749,16 @@ a:focus {
 .opening-hours-table li span:last-child {
   color: var(--ink);
   font-weight: 700;
+  text-align: right;
+}
+
+.after-hours-tag {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent-dark);
+  letter-spacing: 0.2px;
 }
 
 .opening-hours-table li.is-today {
