@@ -3190,3 +3190,91 @@ textarea:focus-visible {
 .booking-method-card.is-accent:focus-visible {
   outline-color: #fff !important;
 }
+
+/* Payments accepted */
+.payments-section {
+  background: var(--bg-soft);
+}
+
+.payments-subtitle {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.payments-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.payment-badge {
+  background: #fff;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  padding: 20px 34px;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.payment-badge:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.payment-badge-eftpos {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-style: italic;
+  font-size: 26px;
+  color: #a6093d;
+  letter-spacing: -0.02em;
+}
+
+.payment-badge-hicaps {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #1c3f6e;
+  letter-spacing: 0.02em;
+}
+
+.payment-plus {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #f0c419;
+  color: #1c3f6e;
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .payments-row {
+    gap: 14px;
+  }
+
+  .payment-badge {
+    padding: 16px 24px;
+  }
+
+  .payment-badge-eftpos {
+    font-size: 22px;
+  }
+
+  .payment-badge-hicaps {
+    font-size: 17px;
+  }
+}
