@@ -17,7 +17,7 @@
   'use strict';
 
   // ====================== CONFIGURE THIS ======================
-  var SHEET_CSV_URL = '';
+  var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQJv29plLpqXxtVDMvpSr9n9It6DRSEYhqfs90y8Fwjbns672YXCZj-f7MsJsxnNLHbYv10Mm8wzFJE/pub?output=csv';
   // ==============================================================
 
   if (!SHEET_CSV_URL) {
