@@ -16,6 +16,9 @@ hours_sun,8:00 AM – 2:00 PM
 hours_afterhours_note,6:00 PM – 11:00 PM · After Hours
 afterhours_weekday,6:00 AM – 11:00 PM
 afterhours_weekend,9:00 AM – 6:00 PM
+afterhours_phone,(02) 8103 1533
+afterhours_phone_href,tel:+61281031533
+afterhours_fax,(02) 8103 1544
 fees_note,"We bulk bill all patients with a valid Medicare card. Veterans may sign the relevant DVA service voucher. For patients without Medicare, a private consultation fee applies. Any fees will be discussed at the time of your visit."
 faq1_q,Do you bulk bill?
 faq1_a,Yes. All consultations at Dutton Street Medical Practice are 100% bulk billed for patients with a valid Medicare card.

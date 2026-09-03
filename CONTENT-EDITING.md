@@ -63,6 +63,7 @@ copy after you save).
 | `contact_phone_href`, `contact_email_href` | The actual `tel:`/`mailto:` links behind the phone/email — keep these in the exact format shown (`tel:+61...`, `mailto:...`) |
 | `hours_mon` … `hours_sun`, `hours_summary`, `hours_afterhours_note` | Regular opening hours shown on the homepage |
 | `afterhours_weekday`, `afterhours_weekend` | Hours shown on the dedicated After Hours page |
+| `afterhours_phone`, `afterhours_phone_href`, `afterhours_fax` | The After Hours line's own phone/fax (separate from the main clinic number) |
 | `fees_note` | The billing/fees paragraph on the homepage |
 | `svc1_title`/`svc1_desc` … `svc10_title`/`svc10_desc` | The 10 general services (shown on both the homepage and Services page) |
 | `spc1_title`/`spc1_desc` … `spc5_title`/`spc5_desc` | The 5 Specialist Services |
