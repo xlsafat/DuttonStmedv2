@@ -90,7 +90,7 @@
   <li class="nav-item active"><a class="nav-link" href="contact.html">Contact</a></li>
 </ul>
 		<div class="btn-container ml-lg-3">
-						<a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" class="btn btn-main-2 btn-icon btn-round-full">Book Appointment<i class="icofont-simple-right ml-1  "></i></a>
+						<a href="#" data-toggle="modal" data-target="#bookingModal" class="btn btn-main-2 btn-icon btn-round-full">Book Appointment<i class="icofont-simple-right ml-1  "></i></a>
 					</div>
 		  </div>
 		</div>
@@ -195,7 +195,7 @@
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="faq-4" class="collapse faq-answer">
-                            <p>Book online in a few clicks via <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener">HotDoc</a>, or call the clinic directly on <a href="tel:+61297092223">(02) 9709 2223</a>.</p>
+                            <p>Book online in a few clicks via <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener">HotDoc</a> or <a href="https://healthengine.com.au/medical-centre/nsw/yagoona/dutton-street-medical-centre/s62282" target="_blank" rel="noopener">HealthEngine</a>, or call the clinic directly on <a href="tel:+61297092223">(02) 9709 2223</a>.</p>
                         </div>
                     </div>
 
@@ -419,6 +419,42 @@
 		</div>
 	</div>
 </footer>
+
+<!-- Booking method modal: HotDoc or HealthEngine -->
+<div class="modal fade" id="bookingModal" tabindex="-1" role="dialog" aria-labelledby="bookingModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content booking-modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="bookingModalLabel">Book an Appointment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p class="mb-4">Choose how you'd like to book online:</p>
+        <div class="booking-modal-options">
+          <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener" class="booking-modal-option">
+            <span class="booking-method-icon"><i class="icofont-calendar"></i></span>
+            <span>
+              <span class="booking-method-title">Book via HotDoc</span>
+              <span class="booking-method-sub">hotdoc.com.au</span>
+            </span>
+            <i class="icofont-simple-right ml-auto"></i>
+          </a>
+          <a href="https://healthengine.com.au/medical-centre/nsw/yagoona/dutton-street-medical-centre/s62282" target="_blank" rel="noopener" class="booking-modal-option">
+            <span class="booking-method-icon"><i class="icofont-calendar"></i></span>
+            <span>
+              <span class="booking-method-title">Book via HealthEngine</span>
+              <span class="booking-method-sub">healthengine.com.au</span>
+            </span>
+            <i class="icofont-simple-right ml-auto"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
    
 
