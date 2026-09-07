@@ -3280,6 +3280,73 @@ textarea:focus-visible {
   flex-shrink: 0;
 }
 
+.workcover-cta-section {
+  background: linear-gradient(135deg, #3f7fb8 0%, #8dc6e8 100%);
+  padding: 80px 0;
+}
+
+.workcover-cta-card {
+  max-width: 620px;
+  margin: 0 auto;
+  background: #0a3349;
+  border-radius: 24px;
+  padding: 50px 45px;
+  text-align: center;
+  box-shadow: var(--shadow-lg);
+}
+
+.workcover-cta-card h3 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 18px;
+}
+
+.workcover-cta-card p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 480px) {
+  .workcover-cta-card {
+    padding: 40px 26px;
+  }
+
+  .workcover-cta-card h3 {
+    font-size: 1.6rem;
+  }
+}
+
+.funds-subtext {
+  color: var(--muted);
+  font-size: 14px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.payment-badge-sm {
+  padding: 14px 22px;
+}
+
+.fund-badge {
+  font-family: "Poppins", sans-serif;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+
+.fund-medicare { color: #008542; }
+.fund-dva { color: #002664; letter-spacing: 0.04em; }
+.fund-bupa { color: #0072ce; font-style: italic; }
+.fund-medibank { color: #e2231a; }
+.fund-hcf { color: #0083c7; letter-spacing: 0.04em; }
+.fund-nib { color: #00a19a; }
+.fund-ahm { color: #92278f; }
+.fund-cbhs { color: #1a1a1a; letter-spacing: 0.04em; }
+.fund-defence { color: #002664; font-size: 15px; }
+
 @media (max-width: 480px) {
   .payments-row {
     gap: 14px;
@@ -3295,6 +3362,18 @@ textarea:focus-visible {
 
   .payment-badge-hicaps {
     font-size: 17px;
+  }
+
+  .payment-badge-sm {
+    padding: 10px 16px;
+  }
+
+  .fund-badge {
+    font-size: 15px;
+  }
+
+  .fund-defence {
+    font-size: 13px;
   }
 }
 
