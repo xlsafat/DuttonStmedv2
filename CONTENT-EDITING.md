@@ -13,14 +13,24 @@ normal built-in text — nothing ever breaks.
 
 1. Go to [Google Sheets](https://sheets.google.com) and create a **new blank
    spreadsheet**.
-2. Open **File → Import → Upload**, and upload the file
-   [`content-template.csv`](content-template.csv) from this project.
+2. Open **File → Import → Upload**, and upload either
+   [`website-content.xlsx`](website-content.xlsx) (recommended — colour-coded
+   by section, so it's easier to browse) or
+   [`content-template.csv`](content-template.csv) (plain, same data) from
+   this project.
 3. When asked how to import, choose **Replace current sheet**.
 
-You now have a two-column sheet: `key` and `value`. Every row is one piece of
-text on the website. **Never rename or delete anything in the `key` column**
-— that's how the site finds each piece of content. Only edit the `value`
-column.
+You now have a sheet with `key` and `value` columns (the `.xlsx` also has a
+`section` column, purely for your own browsing — the site ignores it). Every
+row is one piece of text on the website. **Never rename or delete anything in
+the `key` column** — that's how the site finds each piece of content. Only
+edit the `value` column.
+
+If you already have a live sheet connected and just want to re-sync it to
+match the current site exactly (for example, after the content keys changed),
+repeat step 2 on your **existing** sheet instead of a blank one — Replace
+current sheet overwrites it with the up-to-date version, so your published
+CSV link in `js/content.js` keeps working without any changes there.
 
 ### 2. Publish the sheet so the website can read it
 
@@ -62,11 +72,11 @@ copy after you save).
 | `contact_phone`, `contact_fax`, `contact_email`, `contact_address` | Shown in the header, footer, and contact pages on every page |
 | `contact_phone_href`, `contact_email_href` | The actual `tel:`/`mailto:` links behind the phone/email — keep these in the exact format shown (`tel:+61...`, `mailto:...`) |
 | `hours_mon` … `hours_sun`, `hours_summary`, `hours_afterhours_note` | Regular opening hours shown on the homepage |
-| `afterhours_weekday`, `afterhours_weekend` | Hours shown on the dedicated After Hours page |
+| `afterhours_weekday`, `afterhours_saturday`, `afterhours_sunday` | Hours shown on the dedicated After Hours page |
 | `afterhours_phone`, `afterhours_phone_href`, `afterhours_fax` | The After Hours line's own phone/fax (separate from the main clinic number) |
 | `fees_note` | The billing/fees paragraph on the homepage |
 | `svc1_title`/`svc1_desc` … `svc10_title`/`svc10_desc` | The 10 general services (shown on both the homepage and Services page) |
-| `spc1_title`/`spc1_desc` … `spc5_title`/`spc5_desc` | The 5 Specialist Services |
+| `spc_gastro_title`/`spc_gastro_desc`, `spc_internal_title`/`spc_internal_desc`, `spc_paed_title`/`spc_paed_desc` | The 3 Specialist Services (Gastroenterology, Internal Medicine, Paediatrics) |
 | `ah1_title`/`ah1_desc` … `ah5_title`/`ah5_desc` | The 5 Allied Health Services |
 | `faq1_q` … `faq7_q` | All 7 FAQ questions (homepage and Contact page) |
 | `faq1_a`, `faq2_a`, `faq5_a`, `faq6_a`, `faq7_a` | 5 of the 7 FAQ answers |

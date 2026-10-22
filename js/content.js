@@ -89,7 +89,25 @@
     return data;
   }
 
+  function isArabicActive() {
+    try {
+      return localStorage.getItem('dsmp-language') === 'ar';
+    } catch (e) {
+      return false;
+    }
+  }
+
   function applyContent(data) {
+    // The sheet only ever holds English text. While Arabic is showing,
+    // writing it in would silently clobber the translated text — so just
+    // cache the data (done by the caller) and skip the DOM writes. When the
+    // visitor switches back to English, js/i18n.js calls
+    // window.DSMP_reapplySheetContent(), which re-runs this with the same
+    // cached data.
+    if (isArabicActive()) {
+      return;
+    }
+
     document.querySelectorAll('[data-content-key]').forEach(function (el) {
       var key = el.getAttribute('data-content-key');
       var value = data[key];
@@ -113,6 +131,12 @@
     });
   }
 
+  window.DSMP_reapplySheetContent = function () {
+    if (window.__dsmpSheetData) {
+      applyContent(window.__dsmpSheetData);
+    }
+  };
+
   fetch(SHEET_CSV_URL, { cache: 'no-store' })
     .then(function (res) {
       if (!res.ok) {
@@ -122,6 +146,7 @@
     })
     .then(function (text) {
       var data = toDataMap(parseCSV(text));
+      window.__dsmpSheetData = data;
       applyContent(data);
     })
     .catch(function (err) {

@@ -8,6 +8,7 @@ Version: 1.0.0
 
 */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,500;1,600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap");
 
 :root {
   --primary: #0077d9;
@@ -22,6 +23,8 @@ Version: 1.0.0
   --body-muted: #51606f;
   --muted: #7a8290;
   --bg-soft: #f6f9fc;
+  --surface: #ffffff;
+  --body-bg: #ffffff;
   --border-soft: #e1e8f0;
   --footer-bg: #0b1f33;
   --footer-text: #a9bdd4;
@@ -31,11 +34,35 @@ Version: 1.0.0
   --shadow-md: 0 8px 24px rgba(16, 31, 48, 0.08);
   --shadow-lg: 0 24px 48px rgba(16, 31, 48, 0.14);
   --font-serif: "Playfair Display", serif;
+  color-scheme: light;
+}
+
+/* Dark mode: only the neutral "canvas" (page/section/card backgrounds,
+   borders, body/heading text) changes. Brand colors (--primary, --accent,
+   --footer-bg, etc.) stay the same in both modes on purpose, so the site's
+   identity doesn't shift — only legibility and surface depth do. */
+:root[data-theme="dark"] {
+  --ink: #eef2f7;
+  --body-muted: #b7c2d0;
+  --muted: #8a97a8;
+  --bg-soft: #121b2b;
+  --surface: #17212f;
+  --body-bg: #0d1420;
+  --border-soft: #2a3a4e;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.45);
+  color-scheme: dark;
 }
 
 html {
   overflow-x: hidden;
+  scroll-behavior: smooth;
+  background: var(--body-bg);
+}
 
+section[id] {
+  scroll-margin-top: 150px;
 }
 
 /* --- Appointment & Working Hours Styling --- */
@@ -48,7 +75,7 @@ html {
 }
 
 .info-card {
-    background: #ffffff;
+    background: var(--surface);
     padding: 44px 40px;
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
@@ -136,6 +163,8 @@ body {
   color: var(--body-muted);
   font-weight: 400;
   overflow-wrap: break-word;
+  background: var(--body-bg);
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 img, iframe {
@@ -296,7 +325,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .btn-white {
   background: #fff;
   border-color: #fff;
-  color: var(--ink);
+  color: #101f30;
 }
 
 .btn-white:hover {
@@ -421,7 +450,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 /* Links */
 a {
-  color: #222;
+  color: var(--ink);
   text-decoration: none;
   transition: all .35s ease;
 }
@@ -531,7 +560,7 @@ a:focus {
 }
 
 .navbar-brand img {
-  height: 54px !important;
+  height: 70px !important;
   flex-shrink: 0;
 }
 
@@ -541,7 +570,7 @@ a:focus {
 
 @media (max-width: 575.98px) {
   .navbar-brand img {
-    height: 40px !important;
+    height: 50px !important;
   }
 
   .navbar-brand h1 {
@@ -555,7 +584,7 @@ a:focus {
   position: sticky;
   top: 0;
   z-index: 999;
-  background: #fff;
+  background: var(--surface);
   box-shadow: 0 1px 0 var(--border-soft);
 }
 
@@ -577,12 +606,124 @@ a:focus {
 
 .navigation .btn-container {
   flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .navigation .btn-container .btn {
   white-space: nowrap;
   font-size: 0.8rem;
   padding: .7rem 1.4rem;
+}
+
+/* Theme toggle (Auto / Light / Dark) */
+.theme-toggle {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.theme-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--accent-50);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.theme-toggle-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.theme-toggle-icon {
+  font-size: 18px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.theme-toggle-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 160px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 1050;
+}
+
+.theme-toggle-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.theme-toggle-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.theme-toggle-option i {
+  font-size: 15px;
+  width: 18px;
+  text-align: center;
+  color: var(--muted);
+}
+
+.theme-toggle-option:hover {
+  background: var(--bg-soft);
+}
+
+.theme-toggle-option.is-active {
+  background: var(--accent-50);
+  color: var(--accent-dark);
+}
+
+.theme-toggle-option.is-active i {
+  color: var(--accent);
+}
+
+@media (max-width: 575.98px) {
+  .theme-toggle-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .theme-toggle-icon {
+    font-size: 16px;
+  }
 }
 
 #navbarmain .nav-link::after {
@@ -620,7 +761,7 @@ a:focus {
 .dropdown .dropdown-menu {
   position: absolute;
   display: block;
-  background: #fff;
+  background: var(--surface);
   min-width: 240px;
   top: 130%;
   left: 0;
@@ -961,11 +1102,36 @@ a:focus {
 }
 
 .hero-info-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-md);
   padding: 20px 22px;
   backdrop-filter: blur(2px);
+}
+
+.hero-info-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 20px;
+}
+
+.hero-info-card.is-accent .hero-info-icon {
+  background: rgba(0, 172, 71, 0.4);
+  color: #eafff3;
+}
+
+.hero-info-text {
+  min-width: 0;
 }
 
 .hero-info-card .hero-info-label {
@@ -1070,7 +1236,7 @@ a:focus {
 
 .section.clients {
     padding: 56px 0;
-    background: #ffffff;
+    background: var(--surface);
     border-top: 1px solid var(--border-soft);
     border-bottom: 1px solid var(--border-soft);
 }
@@ -1093,17 +1259,14 @@ a:focus {
 }
 
 .client-thumb img {
-    max-height: 60px;
+    max-height: 72px;
     width: auto;
     object-fit: contain;
-    filter: grayscale(1);
-    opacity: 0.6;
-    transition: opacity 0.3s ease, filter 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .client-thumb img:hover {
-    filter: grayscale(0);
-    opacity: 1;
+    transform: scale(1.05);
 }
 
 .features {
@@ -1114,7 +1277,7 @@ a:focus {
   flex-basis: 33.33%;
   margin: 0px 10px;
   padding: 40px 30px;
-  background-color: #fff;
+  background-color: var(--surface);
   border-radius: 15px 15px 15px 15px;
   box-shadow: 0px 0px 30px 0px rgba(0, 42, 106, 0.1);
 }
@@ -1178,7 +1341,7 @@ a:focus {
 }
 
 .service .service-item {
-  background: #fff;
+  background: var(--surface);
   padding: 34px 30px;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-soft);
@@ -1574,7 +1737,7 @@ a:focus {
 
 .contact-block {
   text-align: center;
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
@@ -2103,7 +2266,7 @@ a:focus {
 }
 
 .about-ums-card {
-    background: #ffffff;
+    background: var(--surface);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -2164,7 +2327,7 @@ a:focus {
 /* Why Choose Us Section Styles */
 .choose-ums {
     padding: 30px 0 100px;
-    background-color: #ffffff;
+    background-color: var(--surface);
 }
 
 .choose-ums-subtitle {
@@ -2236,7 +2399,7 @@ a:focus {
 /* Our misson section */
 /* Custom UMS Styling for Dutton Street */
 .ums-card-wrapper {
-    background: #fff;
+    background: var(--surface);
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -2472,7 +2635,7 @@ a:focus {
 
 .service .service-item {
   border-left: 3px solid var(--primary);
-  background: #fff;
+  background: var(--surface);
 }
 
 .service .service-item:nth-child(even) {
@@ -2515,7 +2678,7 @@ a:focus {
   height: 44px;
   width: 44px;
   object-fit: contain;
-  background: #fff;
+  background: var(--surface);
   border-radius: 8px;
   padding: 4px;
 }
@@ -2657,9 +2820,15 @@ a:focus {
 
 /* Booking method modal (HotDoc / HealthEngine choice) */
 .booking-modal-content {
+  background: var(--surface);
   border: none;
   border-radius: var(--radius-lg);
   overflow: hidden;
+}
+
+.modal-header .close {
+  color: var(--ink);
+  text-shadow: none;
 }
 
 .booking-modal-content .modal-header {
@@ -2719,7 +2888,7 @@ a:focus {
 
 /* Find us section */
 .find-us-section {
-  background: #fff;
+  background: var(--surface);
 }
 
 .contact-icon-list li {
@@ -2787,7 +2956,7 @@ a:focus {
 }
 
 .opening-hours-header {
-  background: #fff;
+  background: var(--surface);
   padding: 18px 26px;
   font-weight: 700;
   color: var(--ink);
@@ -2833,7 +3002,7 @@ a:focus {
   padding: 18px 26px;
   font-size: 14px;
   color: var(--body-muted);
-  background: #fff;
+  background: var(--surface);
   border-top: 1px solid var(--border-soft);
 }
 
@@ -2843,7 +3012,7 @@ a:focus {
 }
 
 .enquiry-card {
-  background: #fff;
+  background: var(--surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-soft);
   box-shadow: var(--shadow-lg);
@@ -2869,7 +3038,7 @@ a:focus {
   height: auto;
   font-size: 15px;
   color: var(--ink);
-  background: #fff;
+  background: var(--surface);
 }
 
 .enquiry-form textarea.form-control {
@@ -2929,6 +3098,284 @@ a:focus {
 @media (max-width: 767px) {
   .enquiry-card {
     padding: 34px 24px;
+  }
+}
+
+/* After Hours page theme - carries the hero's indigo/amber palette through the
+   rest of the page (checklist icons, "today" highlight, FAQ icons, and the
+   Contact section), scoped to .afterhours-theme so it never touches other pages. */
+.afterhours-theme .title-color {
+  color: #241a52;
+}
+
+[data-theme="dark"] .afterhours-theme .title-color {
+  color: #c9b8f5;
+}
+
+.afterhours-theme .about-check-list li i {
+  color: #d99e1f;
+}
+
+.afterhours-theme .opening-hours-table li.is-today {
+  background: rgba(240, 180, 41, 0.14);
+  border-left: 3px solid #d99e1f;
+}
+
+.afterhours-theme .after-hours-tag {
+  color: #d99e1f;
+}
+
+.afterhours-theme .info-icon-box {
+  background: rgba(240, 180, 41, 0.14);
+  color: #d99e1f;
+}
+
+.afterhours-theme .info-subtitle {
+  color: #d99e1f;
+}
+
+.afterhours-theme .faq-icon {
+  color: #d99e1f;
+}
+
+.afterhours-theme .book-now-section {
+  background: linear-gradient(135deg, #0b1230 0%, #241a52 50%, #0c3b3a 100%);
+}
+
+.afterhours-theme .booking-method-card.is-accent {
+  background: rgba(240, 180, 41, 0.22);
+  border-color: rgba(240, 180, 41, 0.5);
+}
+
+.afterhours-theme .booking-method-card.is-accent .booking-method-icon {
+  background: rgba(240, 180, 41, 0.35);
+}
+
+.afterhours-theme .widget .divider,
+.afterhours-theme .logo span {
+  background: #d99e1f;
+  color: #d99e1f;
+}
+
+.afterhours-theme .footer-contact-block i,
+.afterhours-theme .widget .footer-menu a:hover,
+.afterhours-theme .footer-contact-block h4 a:hover {
+  color: #d99e1f;
+}
+
+.afterhours-theme .footer {
+  background: var(--surface);
+  border-top: 1px solid var(--border-soft);
+}
+
+.afterhours-theme .footer h1,
+.afterhours-theme .footer h2,
+.afterhours-theme .footer h3,
+.afterhours-theme .footer h4,
+.afterhours-theme .footer h5,
+.afterhours-theme .footer h6,
+.afterhours-theme .logo h3,
+.afterhours-theme .footer-contact-block h4,
+.afterhours-theme .footer-contact-block h4 a,
+.afterhours-theme .footer .copyright a {
+  color: var(--ink);
+}
+
+.afterhours-theme .footer p,
+.afterhours-theme .widget .footer-menu a,
+.afterhours-theme .footer-contact-block span {
+  color: var(--body-muted);
+}
+
+.afterhours-theme .widget .footer-menu a:hover {
+  color: #d99e1f;
+}
+
+.afterhours-theme .backtop {
+  background: #d99e1f;
+}
+
+.afterhours-theme .backtop:hover {
+  background: #bf8a19;
+}
+
+.afterhours-theme .step-num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #241a52;
+  color: #f0c75e;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+  flex-shrink: 0;
+}
+
+/* After Hours "home" hero - fully distinct night theme, deliberately not sharing
+   .banner's background/colors so the page reads as its own site. */
+.afterhours-hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  padding: 100px 0;
+  background: linear-gradient(135deg, #0b1230 0%, #241a52 50%, #0c3b3a 100%);
+}
+
+.afterhours-hero .glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.afterhours-hero .glow-a {
+  width: 420px;
+  height: 420px;
+  top: -140px;
+  left: 4%;
+  background: radial-gradient(circle, rgba(240, 180, 41, 0.3) 0%, rgba(240, 180, 41, 0) 70%);
+  animation: heroGlowFloatA 18s ease-in-out infinite alternate;
+}
+
+.afterhours-hero .glow-b {
+  width: 500px;
+  height: 500px;
+  bottom: -200px;
+  right: 4%;
+  background: radial-gradient(circle, rgba(124, 92, 255, 0.35) 0%, rgba(124, 92, 255, 0) 70%);
+  animation: heroGlowFloatB 22s ease-in-out infinite alternate;
+}
+
+.afterhours-hero .container {
+  position: relative;
+  z-index: 3;
+}
+
+.afterhours-hero .block {
+  padding: 60px 0px 60px;
+}
+
+.afterhours-hero .block h1 {
+  font-size: 58px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: #fff;
+}
+
+.afterhours-hero .block > span.text-uppercase {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffe2a8;
+}
+
+.afterhours-hero .block > span.text-uppercase,
+.afterhours-hero .block h1,
+.afterhours-hero .block .hero-subtext,
+.afterhours-hero .block .hero-btn-group {
+  opacity: 0;
+  animation: heroFadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.afterhours-hero .block > span.text-uppercase {
+  animation-delay: 0.1s;
+}
+
+.afterhours-hero .block h1 {
+  animation-delay: 0.24s;
+}
+
+.afterhours-hero .block .hero-subtext {
+  animation-delay: 0.42s;
+}
+
+.afterhours-hero .block .hero-btn-group {
+  animation-delay: 0.56s;
+}
+
+.afterhours-pulse-dot {
+  position: relative;
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f0b429;
+  flex-shrink: 0;
+}
+
+.afterhours-pulse-dot:before {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: #f0b429;
+  animation: heroPulse 2.2s ease-out infinite;
+}
+
+.btn-amber {
+  background: #f0b429;
+  border-color: #f0b429;
+  color: #241a00;
+}
+
+.btn-amber:hover {
+  background: #d99e1f;
+  border-color: #d99e1f;
+  color: #241a00;
+  transform: translateY(-2px);
+}
+
+.hero-info-card.is-amber {
+  background: rgba(240, 180, 41, 0.16);
+  border-color: rgba(240, 180, 41, 0.4);
+}
+
+.hero-info-card.is-amber .hero-info-icon {
+  background: rgba(240, 180, 41, 0.3);
+}
+
+@media (max-width: 767px) {
+  .afterhours-hero .glow-a {
+    width: 260px;
+    height: 260px;
+  }
+
+  .afterhours-hero .glow-b {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 991px) {
+  .afterhours-hero {
+    min-height: 450px;
+    padding: 60px 0;
+  }
+
+  .afterhours-hero .block {
+    padding: 0;
+    text-align: center;
+    max-width: 100%;
+  }
+
+  .afterhours-hero .block h1 {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .afterhours-hero .block > span.text-uppercase {
+    font-size: 11px;
+    letter-spacing: 0.6px;
+    padding: 7px 14px;
+    white-space: normal;
   }
 }
 
@@ -3105,7 +3552,7 @@ a:focus {
 }
 
 .faq-item {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-sm);
@@ -3209,6 +3656,11 @@ a:focus {
 .navigation .navbar-toggler .icofont-navigation-menu {
   font-size: 22px;
   line-height: 1;
+  color: var(--ink);
+}
+
+.navigation .navbar-toggler {
+  border-color: var(--border-soft);
 }
 
 /* Section rhythm was a flat 100px top/bottom on every screen size, which
@@ -3292,7 +3744,7 @@ textarea:focus-visible {
 }
 
 .payment-badge {
-  background: #fff;
+  background: var(--surface);
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-md);
   padding: 20px 34px;
@@ -3409,6 +3861,18 @@ textarea:focus-visible {
 .fund-cbhs { color: #1a1a1a; letter-spacing: 0.04em; }
 .fund-defence { color: #002664; font-size: 15px; }
 
+/* These three brand colors (navy, near-black) are illegible on a dark card
+   surface, so lighten just them for dark mode. Everything else above stays
+   the same brand color in both themes since it already has enough contrast. */
+[data-theme="dark"] .fund-dva,
+[data-theme="dark"] .fund-defence {
+  color: #6f9cf2;
+}
+
+[data-theme="dark"] .fund-cbhs {
+  color: #e8c547;
+}
+
 @media (max-width: 480px) {
   .payments-row {
     gap: 14px;
@@ -3508,5 +3972,255 @@ textarea:focus-visible {
   .hero-info-card::after {
     animation: none;
     opacity: 0;
+  }
+}
+
+/* ==========================================================================
+   Language switcher (English / Arabic) + RTL support
+   ==========================================================================
+   Most of the site's layout is flexbox/grid-based, which already mirrors
+   itself automatically under dir="rtl" — no CSS needed for that part. What
+   doesn't auto-mirror is physical left/right spacing, accent borders, and
+   directional icons, which this block corrects. Scoped entirely under
+   [dir="rtl"] so English (the default) is completely untouched. */
+
+[dir="rtl"] body {
+  font-family: "Cairo", "Inter", sans-serif;
+}
+
+[dir="rtl"] h1, [dir="rtl"] .h1,
+[dir="rtl"] h2, [dir="rtl"] .h2,
+[dir="rtl"] h3, [dir="rtl"] .h3,
+[dir="rtl"] h4, [dir="rtl"] .h4,
+[dir="rtl"] h5, [dir="rtl"] .h5,
+[dir="rtl"] h6, [dir="rtl"] .h6 {
+  font-family: "Cairo", "Inter", sans-serif;
+  font-weight: 700;
+}
+
+/* Bootstrap's own margin/padding utility classes (mr-*, ml-*, pr-*, pl-*) are
+   used throughout the HTML for icon/text spacing — mirror all of them. */
+[dir="rtl"] .mr-0 { margin-right: 0 !important; margin-left: 0 !important; }
+[dir="rtl"] .mr-1 { margin-right: 0 !important; margin-left: .25rem !important; }
+[dir="rtl"] .mr-2 { margin-right: 0 !important; margin-left: .5rem !important; }
+[dir="rtl"] .mr-3 { margin-right: 0 !important; margin-left: 1rem !important; }
+[dir="rtl"] .mr-4 { margin-right: 0 !important; margin-left: 1.5rem !important; }
+[dir="rtl"] .mr-5 { margin-right: 0 !important; margin-left: 3rem !important; }
+[dir="rtl"] .ml-0 { margin-left: 0 !important; margin-right: 0 !important; }
+[dir="rtl"] .ml-1 { margin-left: 0 !important; margin-right: .25rem !important; }
+[dir="rtl"] .ml-2 { margin-left: 0 !important; margin-right: .5rem !important; }
+[dir="rtl"] .ml-3 { margin-left: 0 !important; margin-right: 1rem !important; }
+[dir="rtl"] .ml-4 { margin-left: 0 !important; margin-right: 1.5rem !important; }
+[dir="rtl"] .ml-5 { margin-left: 0 !important; margin-right: 3rem !important; }
+[dir="rtl"] .pr-0 { padding-right: 0 !important; padding-left: 0 !important; }
+[dir="rtl"] .pr-1 { padding-right: 0 !important; padding-left: .25rem !important; }
+[dir="rtl"] .pr-2 { padding-right: 0 !important; padding-left: .5rem !important; }
+[dir="rtl"] .pr-3 { padding-right: 0 !important; padding-left: 1rem !important; }
+[dir="rtl"] .pr-4 { padding-right: 0 !important; padding-left: 1.5rem !important; }
+[dir="rtl"] .pr-5 { padding-right: 0 !important; padding-left: 3rem !important; }
+[dir="rtl"] .pl-0 { padding-left: 0 !important; padding-right: 0 !important; }
+[dir="rtl"] .pl-1 { padding-left: 0 !important; padding-right: .25rem !important; }
+[dir="rtl"] .pl-2 { padding-left: 0 !important; padding-right: .5rem !important; }
+[dir="rtl"] .pl-3 { padding-left: 0 !important; padding-right: 1rem !important; }
+[dir="rtl"] .pl-4 { padding-left: 0 !important; padding-right: 1.5rem !important; }
+[dir="rtl"] .pl-5 { padding-left: 0 !important; padding-right: 3rem !important; }
+[dir="rtl"] .text-left { text-align: right !important; }
+[dir="rtl"] .text-right { text-align: left !important; }
+[dir="rtl"] .float-left { float: right !important; }
+[dir="rtl"] .float-right { float: left !important; }
+
+/* Directional "next" arrow — points the wrong way once the line reads
+   right-to-left, so mirror it. */
+[dir="rtl"] .icofont-simple-right {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* Accent borders that should sit on the leading (now right) edge */
+[dir="rtl"] .service .service-item,
+[dir="rtl"] .opening-hours-table li.is-today,
+[dir="rtl"] .afterhours-theme .opening-hours-table li.is-today {
+  border-left: none;
+  border-right: 3px solid var(--primary);
+}
+
+[dir="rtl"] .service .service-item:nth-child(even) {
+  border-right-color: var(--accent);
+}
+
+[dir="rtl"] .service .service-item:hover {
+  border-right-color: var(--primary);
+}
+
+[dir="rtl"] .service .service-item:nth-child(even):hover {
+  border-right-color: var(--accent);
+}
+
+[dir="rtl"] .opening-hours-table li.is-today {
+  border-right-color: var(--accent);
+}
+
+[dir="rtl"] .afterhours-theme .opening-hours-table li.is-today {
+  border-right-color: #d99e1f;
+}
+
+/* The "|" divider inside icon buttons (Book Appointment | ›) */
+[dir="rtl"] .btn.btn-icon i {
+  border-left: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+[dir="rtl"] .btn-solid-border.btn-icon i {
+  border-left: none;
+  border-right: 1px solid rgba(0, 0, 0, 0.09);
+}
+
+[dir="rtl"] .btn-solid-border:hover.btn-icon i {
+  border-left: none;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* Right-aligned value columns (hours tables, dropdown menu items) read
+   backwards once the row direction flips */
+[dir="rtl"] .working-hours-list li span:last-child,
+[dir="rtl"] .opening-hours-table li span:last-child {
+  text-align: left;
+}
+
+[dir="rtl"] .faq-question,
+[dir="rtl"] .theme-toggle-option,
+[dir="rtl"] .lang-toggle-option {
+  text-align: right;
+}
+
+/* Floating / absolutely-positioned UI that anchors to a physical side */
+[dir="rtl"] .backtop {
+  right: auto;
+  left: 40px;
+}
+
+[dir="rtl"] .theme-toggle-menu,
+[dir="rtl"] .lang-toggle-menu {
+  right: auto;
+  left: 0;
+}
+
+/* Language toggle (mirrors the theme toggle's structure/behaviour) */
+.lang-toggle {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.lang-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 10px;
+  border-radius: 21px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  color: var(--ink);
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+
+.lang-toggle-btn:hover {
+  background: var(--primary-50);
+  border-color: var(--primary);
+  transform: translateY(-1px);
+}
+
+.lang-toggle-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.lang-toggle-btn i {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.lang-toggle-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 160px;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+  z-index: 1050;
+}
+
+.lang-toggle-menu.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-toggle-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  padding: 9px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.lang-toggle-option:hover {
+  background: var(--bg-soft);
+}
+
+.lang-toggle-option.is-active {
+  background: var(--primary-50);
+  color: var(--primary-dark);
+}
+
+/* Arabic machine-translation disclaimer banner */
+.lang-disclaimer {
+  display: none;
+  background: #fff7e6;
+  border-bottom: 1px solid #f0d9a8;
+  color: #6b5518;
+  font-size: 13px;
+  text-align: center;
+  padding: 8px 16px;
+}
+
+[dir="rtl"] .lang-disclaimer {
+  display: block;
+}
+
+[data-theme="dark"] .lang-disclaimer {
+  background: #2a2412;
+  border-bottom-color: #4a3f1a;
+  color: #e8d9a8;
+}
+
+@media (max-width: 575.98px) {
+  .lang-toggle-btn {
+    height: 38px;
+    min-width: 38px;
   }
 }

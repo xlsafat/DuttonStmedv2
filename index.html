@@ -2,7 +2,32 @@
 <html lang="zxx">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script>
+(function () {
+  var KEY = 'dsmp-theme-preference';
+  try {
+    var pref = localStorage.getItem(KEY);
+    if (pref !== 'light' && pref !== 'dark' && pref !== 'auto') { pref = 'auto'; }
+    var theme = pref;
+    if (pref === 'auto') {
+      var hour = new Date().getHours();
+      theme = (hour >= 6 && hour < 18) ? 'light' : 'dark';
+    }
+    document.documentElement.setAttribute('data-theme', theme);
+  } catch (e) {}
+})();
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>
+(function () {
+  try {
+    var lang = localStorage.getItem('dsmp-language');
+    if (lang !== 'ar') { lang = 'en'; }
+    document.documentElement.setAttribute('lang', lang);
+    document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  } catch (e) {}
+})();
+  </script>
   <meta name="description" content="Dutton Street Medical Practice in Yagoona &mdash; 100% bulk billed GP care for the whole family. Book online via HotDoc or call (02) 9709 2223.">
 
   <title>Dutton Street Medical Practice</title>
@@ -18,6 +43,7 @@
   <meta property="og:description" content="100% bulk billed GP care for the whole family. Book online via HotDoc or call (02) 9709 2223.">
   <meta property="og:image" content="images/favicon-180.png">
   <meta name="twitter:card" content="summary">
+  <link rel="canonical" href="https://duttonstmed.com.au/">
 
   <!-- bootstrap.min css -->
   <link rel="stylesheet" href="plugins/bootstrap/css/bootstrap.min.css">
@@ -39,21 +65,23 @@
 
 <body id="top">
 
+<div class="lang-disclaimer">هذه الترجمة العربية آلية وقد تحتوي على أخطاء. للحصول على معلومات دقيقة، يُرجى التواصل معنا هاتفياً أو التحقق من النسخة الإنجليزية من الموقع.</div>
+
 <header>
 	<div class="header-top-bar">
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-lg-6">
 					<ul class="top-bar-info list-inline-item pl-0 mb-0">
-						<li class="list-inline-item"><a href="mailto:reception@duttonstreetmed.com.au" data-content-attr="href:contact_email_href"><i class="icofont-support-faq mr-2"></i><span data-content-key="contact_email">reception@duttonstreetmed.com.au</span></a></li>
-						<li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>Address : <span data-content-key="contact_address">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</span></li>
+						<li class="list-inline-item"><a href="mailto:reception@duttonstreetmed.com.au" data-content-attr="href:contact_email_href"><i class="icofont-support-faq mr-2"></i><span data-content-key="contact_email" data-i18n="contact_email">reception@duttonstreetmed.com.au</span></a></li>
+						<li class="list-inline-item"><i class="icofont-location-pin mr-2"></i><span data-i18n="topbar_address_label">Address : </span><span data-content-key="contact_address" data-i18n="contact_address">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</span></li>
 					</ul>
 				</div>
 				<div class="col-lg-6">
 					<div class="text-lg-right top-right-bar mt-2 mt-lg-0">
 						<a href="tel:+61297092223" data-content-attr="href:contact_phone_href">
-								<span>Call Now : </span>
-								<span class="h4" data-content-key="contact_phone">(02) 9709 2223 </span>
+								<span data-i18n="topbar_call_now">Call Now : </span>
+								<span class="h4" data-content-key="contact_phone" data-i18n="contact_phone">(02) 9709 2223 </span>
 							</a>
 					</div>
 				</div>
@@ -64,7 +92,7 @@
   <div class="container">
     <a class="navbar-brand" href="index.html" style="display: flex; align-items: center;">
       
-      <img src="images/DSLogo.svg" alt="Logo" class="img-fluid" style="height:80px;">
+      <img src="images/DSLogo.svg" alt="Dutton Street Medical Practice logo" class="img-fluid" style="height:80px;">
       
       <h1 style="margin-left: 0px; margin-bottom: 0; font-size: 22px;">
        <span style="color: #0077d9;">Dutton Street</span> <span style="color: #00ac47;">Medical Practice</span>
@@ -82,13 +110,12 @@
 		  <div class="collapse navbar-collapse" id="navbarmain">
 			<ul class="navbar-nav ml-auto">
 			  <li class="nav-item active">
-				<a class="nav-link" href="index.html">Home</a>
+				<a class="nav-link" href="index.html"><span data-i18n="nav_home">Home</span></a>
 			  </li>
-			   <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
+			   <li class="nav-item"><a class="nav-link" href="service.html"><span data-i18n="nav_services">Services</span></a></li>
 			   <!-- <li class="nav-item"><a class="nav-link" href="service.html">Doctors</a></li> -->
-			   <li class="nav-item"><a class="nav-link" href="afterhours.html">After Hours</a></li>
-				 <li class="nav-item"><a class="nav-link" href="ourmission.html">Our Mission</a></li>
-			   <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+				 <li class="nav-item"><a class="nav-link" href="ourmission.html"><span data-i18n="nav_mission">Our Mission</span></a></li>
+			   <li class="nav-item"><a class="nav-link" href="about.html"><span data-i18n="nav_about">About</span></a></li>
 			   
 <!--
 			    <li class="nav-item dropdown">
@@ -112,10 +139,41 @@
 
 				-->
 
-			   <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+			   <li class="nav-item"><a class="nav-link" href="contact.html"><span data-i18n="nav_contact">Contact</span></a></li>
+			   <li class="nav-item"><a class="nav-link" href="afterhours.html"><span data-i18n="nav_afterhours">After Hours</span></a></li>
 			</ul>
 		<div class="btn-container ml-lg-3">
-						<a href="#" data-toggle="modal" data-target="#bookingModal" class="btn btn-main-2 btn-icon btn-round-full">Book Appointment<i class="icofont-simple-right ml-1  "></i></a>
+						<a href="#" data-toggle="modal" data-target="#bookingModal" class="btn btn-main-2 btn-icon btn-round-full"><span data-i18n="nav_book_appointment">Book Appointment</span><i class="icofont-simple-right ml-1  "></i></a>
+					<div class="theme-toggle" id="theme-toggle">
+						<button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-haspopup="true" aria-expanded="false" aria-label="Change theme">
+							<i class="theme-toggle-icon icofont-sun" data-theme-icon aria-hidden="true"></i>
+						</button>
+						<div class="theme-toggle-menu" id="theme-toggle-menu" role="menu">
+							<button type="button" class="theme-toggle-option" data-theme-option="auto" role="menuitemradio" aria-checked="false">
+								<i class="icofont-settings" aria-hidden="true"></i> <span data-i18n="theme_auto">Auto</span>
+							</button>
+							<button type="button" class="theme-toggle-option" data-theme-option="light" role="menuitemradio" aria-checked="false">
+								<i class="icofont-sun" aria-hidden="true"></i> <span data-i18n="theme_light">Light</span>
+							</button>
+							<button type="button" class="theme-toggle-option" data-theme-option="dark" role="menuitemradio" aria-checked="false">
+								<i class="icofont-moon" aria-hidden="true"></i> <span data-i18n="theme_dark">Dark</span>
+							</button>
+						</div>
+					</div>
+					<div class="lang-toggle" id="lang-toggle">
+						<button type="button" class="lang-toggle-btn" id="lang-toggle-btn" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+							<i class="icofont-globe" aria-hidden="true"></i>
+							<span data-lang-label>EN</span>
+						</button>
+						<div class="lang-toggle-menu" id="lang-toggle-menu" role="menu">
+							<button type="button" class="lang-toggle-option" data-lang-option="en" role="menuitemradio" aria-checked="true">
+								<span data-i18n="lang_english">English</span>
+							</button>
+							<button type="button" class="lang-toggle-option" data-lang-option="ar" role="menuitemradio" aria-checked="false">
+								العربية
+							</button>
+						</div>
+					</div>
 					</div>
 		  </div>
 		</div>
@@ -133,15 +191,15 @@
 		<div class="row">
 			<div class="col-lg-7 col-md-12 col-xl-7">
 				<div class="block">
-					<span class="text-uppercase text-sm letter-spacing"><span class="hero-pulse-dot"></span>Medicare Bulk Billing Practice</span>
+					<span class="text-uppercase text-sm letter-spacing"><span class="hero-pulse-dot"></span><span data-i18n="hero_badge">Medicare Bulk Billing Practice</span></span>
 					<h1 class="mb-3 mt-3" style="font-weight: bold;">
-    <span style="color: #fff;">Your Trusted </span>
-    <em style="color: #00ac47; font-style: italic;">Family Medical Centre</em>
-	<span style="color: #fff;"> in Yagoona</span>
+    <span style="color: #fff;" data-i18n="hero_h1_1">Your Trusted </span>
+    <em style="color: #00ac47; font-style: italic;" data-i18n="hero_h1_2">Family Medical Centre</em>
+	<span style="color: #fff;" data-i18n="hero_h1_3"> in Yagoona</span>
 </h1>
-					<p class="mb-4 hero-subtext">Compassionate, patient-centred care for every stage of life — 100% bulk billed with a valid Medicare card, right in the heart of Yagoona.</p>
+					<p class="mb-4 hero-subtext" data-i18n="hero_subtext">Compassionate, patient-centred care for every stage of life — 100% bulk billed with a valid Medicare card, right in the heart of Yagoona.</p>
 					<div class="btn-container hero-btn-group">
-						<a href="#" data-toggle="modal" data-target="#bookingModal" class="btn btn-main-2 btn-icon btn-round-full">Make an appointment <i class="icofont-simple-right ml-2  "></i></a>
+						<a href="#" data-toggle="modal" data-target="#bookingModal" class="btn btn-main-2 btn-icon btn-round-full"><span data-i18n="hero_cta_book">Make an appointment</span> <i class="icofont-simple-right ml-2  "></i></a>
 						<a href="tel:+61297092223" class="btn btn-solid-border btn-round-full ml-3">
 							<i class="icofont-telephone mr-2"></i>(02) 9709 2223
 						</a>
@@ -151,16 +209,25 @@
 			<div class="col-lg-5 col-md-12 col-xl-5 d-none d-lg-block">
 				<div class="hero-info-stack">
 					<div class="hero-info-card">
-						<span class="hero-info-label">Location</span>
-						<div class="hero-info-value">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</div>
+						<span class="hero-info-icon"><i class="icofont-location-pin"></i></span>
+						<div class="hero-info-text">
+							<span class="hero-info-label" data-i18n="hero_card_location_label">Location</span>
+							<div class="hero-info-value" data-i18n="hero_card_location_value">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</div>
+						</div>
 					</div>
 					<div class="hero-info-card">
-						<span class="hero-info-label">Opening Hours</span>
-						<div class="hero-info-value" data-content-key="hours_summary">Mon&ndash;Fri 9am&ndash;5pm &middot; Sat&ndash;Sun 8am&ndash;2pm</div>
+						<span class="hero-info-icon"><i class="icofont-clock-time"></i></span>
+						<div class="hero-info-text">
+							<span class="hero-info-label" data-i18n="hero_card_hours_label">Opening Hours</span>
+							<div class="hero-info-value" data-content-key="hours_summary" data-i18n="hours_summary">Mon&ndash;Fri 9am&ndash;5pm &middot; Sat 12&ndash;3pm &middot; Sun 8am&ndash;3pm</div>
+						</div>
 					</div>
 					<div class="hero-info-card is-accent">
-						<span class="hero-info-label">Bulk Billing</span>
-						<div class="hero-info-value">100% bulk billed GP consults for all patients with a valid Medicare card.</div>
+						<span class="hero-info-icon"><i class="icofont-heart-beat"></i></span>
+						<div class="hero-info-text">
+							<span class="hero-info-label" data-i18n="hero_card_billing_label">Bulk Billing</span>
+							<div class="hero-info-value" data-i18n="hero_card_billing_value">100% bulk billed GP consults for all patients with a valid Medicare card.</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -177,12 +244,12 @@
                             <i class="icofont-medical-sign-alt"></i>
                         </div>
                         <div>
-                            <span class="info-subtitle">24 Hours Service</span>
-                            <h3 class="info-title">Online Appointment</h3>
+                            <span class="info-subtitle" data-i18n="appt_card1_subtitle">24 Hours Service</span>
+                            <h3 class="info-title" data-i18n="appt_card1_title">Online Appointment</h3>
                         </div>
                     </div>
-                    <p class="info-text">Get all-time support for emergencies. We have introduced the principle of family medicine to ensure continuous care for you and your loved ones.</p>
-                    <a href="#" data-toggle="modal" data-target="#bookingModal" class="btn btn-main-2 btn-round-full mt-3">MAKE AN APPOINTMENT</a>
+                    <p class="info-text" data-i18n="appt_card1_text">Get all-time support for emergencies. We have introduced the principle of family medicine to ensure continuous care for you and your loved ones.</p>
+                    <a href="#" data-toggle="modal" data-target="#bookingModal" class="btn btn-main-2 btn-round-full mt-3" data-i18n="appt_card1_btn">MAKE AN APPOINTMENT</a>
                 </div>
             </div>
 
@@ -193,15 +260,16 @@
                             <i class="icofont-clock-time"></i>
                         </div>
                         <div>
-                            <span class="info-subtitle">Timing schedule</span>
-                            <h3 class="info-title">Working Hours</h3>
+                            <span class="info-subtitle" data-i18n="appt_card2_subtitle">Timing schedule</span>
+                            <h3 class="info-title" data-i18n="appt_card2_title">Working Hours</h3>
                         </div>
                     </div>
                     <ul class="list-unstyled working-hours-list">
-                        <li data-days="mon,tue,wed,thu,fri" class="d-flex justify-content-between"><span>Monday - Friday</span> <span>9:00 AM &ndash; 5:00 PM<span class="after-hours-tag">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
-                        <li data-days="sat,sun" class="d-flex justify-content-between"><span>Saturday - Sunday</span> <span>8:00 AM &ndash; 2:00 PM</span></li>
+                        <li data-days="mon,tue,wed,thu,fri" class="d-flex justify-content-between"><span data-i18n="days_mon_fri">Monday - Friday</span> <span>9:00 AM &ndash; 5:00 PM<span class="after-hours-tag" data-i18n="hours_afterhours_note" data-content-key="hours_afterhours_note">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
+                        <li data-days="sat" class="d-flex justify-content-between"><span data-i18n="day_saturday">Saturday</span> <span data-content-key="hours_sat" data-i18n="hours_sat">12:00 PM &ndash; 3:00 PM</span></li>
+                        <li data-days="sun" class="d-flex justify-content-between"><span data-i18n="day_sunday">Sunday</span> <span data-content-key="hours_sun" data-i18n="hours_sun">8:00 AM &ndash; 3:00 PM</span></li>
                     </ul>
-                    <p class="mt-3 mb-0" style="font-size: 14px; color: var(--muted);">Need care outside these hours? See our <a href="afterhours.html">After Hours service</a>.</p>
+                    <p class="mt-3 mb-0" style="font-size: 14px; color: var(--muted);" data-i18n="appt_card2_footnote">Need care outside these hours? See our <a href="afterhours.html">After Hours service</a>.</p>
                 </div>
             </div>
         </div>
@@ -217,47 +285,47 @@
 			<div class="col-lg-5">
 				<div class="about-stat-card">
 					<div class="about-stat-header">
-						<img src="images/DSLogo.svg" alt="" class="about-stat-logo">
+						<img loading="lazy" src="images/DSLogo.svg" alt="Dutton Street Medical Practice logo" class="about-stat-logo">
 						<div>
-							<div class="about-stat-name">Dutton Street Medical Practice</div>
-							<div class="about-stat-sub">Bulk Billing &middot; Yagoona NSW</div>
+							<div class="about-stat-name" data-i18n="about_stat_name">Dutton Street Medical Practice</div>
+							<div class="about-stat-sub" data-i18n="about_stat_sub">Bulk Billing &middot; Yagoona NSW</div>
 						</div>
 					</div>
 					<div class="about-stat-grid">
 						<div class="about-stat-item">
 							<div class="about-stat-num">100<span class="text-color-2">%</span></div>
-							<div class="about-stat-label">Bulk billed with Medicare</div>
+							<div class="about-stat-label" data-i18n="about_stat1_label">Bulk billed with Medicare</div>
 						</div>
 						<div class="about-stat-item">
 							<div class="about-stat-num">10</div>
-							<div class="about-stat-label">Services under one roof</div>
+							<div class="about-stat-label" data-i18n="about_stat2_label">Services under one roof</div>
 						</div>
 						<div class="about-stat-item">
-							<div class="about-stat-num">7<span class="text-color-2"> Days</span></div>
-							<div class="about-stat-label">Open every day of the week</div>
+							<div class="about-stat-num">7<span class="text-color-2" data-i18n="about_stat3_days"> Days</span></div>
+							<div class="about-stat-label" data-i18n="about_stat3_label">Open every day of the week</div>
 						</div>
 						<div class="about-stat-item">
 							<div class="about-stat-num">Yagoona</div>
-							<div class="about-stat-label">Proudly local, community focused</div>
+							<div class="about-stat-label" data-i18n="about_stat4_label">Proudly local, community focused</div>
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="col-lg-7">
 				<div class="about-content pl-lg-5 mt-5 mt-lg-0">
-					<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;">About Us</span>
-					<h2 class="title-color">A new kind of care for <em style="color: #00ac47; font-style: italic;">Yagoona</em></h2>
-					<p class="mt-4 mb-4">Welcome to your new home for accessible, high-quality healthcare — where all services are 100% bulk billed with a valid Medicare card.</p>
-					<p class="mb-4">Dutton Street Medical Practice, Yagoona is a modern medical clinic proudly serving the Yagoona community and surrounding areas. Our experienced team of GPs is committed to delivering compassionate, personalised care for patients of all ages — whether you're visiting for a routine check-up or need support managing an ongoing health condition.</p>
+					<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;" data-i18n="about_label">About Us</span>
+					<h2 class="title-color"><span data-i18n="about_h2_1">A new kind of care for</span> <em style="color: #00ac47; font-style: italic;" data-i18n="about_h2_2">Yagoona</em></h2>
+					<p class="mt-4 mb-4" data-i18n="about_p1">Welcome to your new home for accessible, high-quality healthcare — where all services are 100% bulk billed with a valid Medicare card.</p>
+					<p class="mb-4" data-i18n="about_p2">Dutton Street Medical Practice, Yagoona is a modern medical clinic proudly serving the Yagoona community and surrounding areas. Our experienced team of GPs is committed to delivering compassionate, personalised care for patients of all ages — whether you're visiting for a routine check-up or need support managing an ongoing health condition.</p>
 
 					<ul class="list-unstyled about-check-list mb-4">
-						<li><i class="icofont-check-circled"></i>100% bulk billed GP consults for all patients with a valid Medicare card</li>
-						<li><i class="icofont-check-circled"></i>AGPAL accredited practice, partnered with Australian Clinical Labs</li>
-						<li><i class="icofont-check-circled"></i>Book online in minutes via HotDoc, or call the clinic directly</li>
-						<li><i class="icofont-check-circled"></i>Compassionate, patient-centred team supporting every stage of life</li>
+						<li><i class="icofont-check-circled"></i><span data-i18n="about_check1">100% bulk billed GP consults for all patients with a valid Medicare card</span></li>
+						<li><i class="icofont-check-circled"></i><span data-i18n="about_check2">AGPAL accredited practice, partnered with Australian Clinical Labs</span></li>
+						<li><i class="icofont-check-circled"></i><span data-i18n="about_check3">Book online in minutes via HotDoc, or call the clinic directly</span></li>
+						<li><i class="icofont-check-circled"></i><span data-i18n="about_check4">Compassionate, patient-centred team supporting every stage of life</span></li>
 					</ul>
 
-					<a href="service.html" class="btn btn-main-2 btn-round-full btn-icon">Services<i class="icofont-simple-right ml-3"></i></a>
+					<a href="service.html" class="btn btn-main-2 btn-round-full btn-icon"><span data-i18n="about_services_btn">Services</span><i class="icofont-simple-right ml-3"></i></a>
 				</div>
 			</div>
 		</div>
@@ -270,17 +338,17 @@
 				<div class="col-lg-6 col-md-6 col-sm-6">
 					<div class="counter-stat">
 						<i class="icofont-credit-card"></i>
-							<h3 style="color: white;">Fees and Billing Arrangements</h3>
-						
-						<p class="mt-4 mb-5" data-content-key="fees_note">We bulk bill all patients with a valid Medicare card. Veterans may sign the relevant DVA service voucher. For patients without Medicare, a private consultation fee applies. Any fees will be discussed at the time of your visit.</p>
+							<h3 style="color: white;" data-i18n="cta_fees_title">Fees and Billing Arrangements</h3>
+
+						<p class="mt-4 mb-5" data-content-key="fees_note" data-i18n="fees_note">We bulk bill all patients with a valid Medicare card. Veterans may sign the relevant DVA service voucher. For patients without Medicare, a private consultation fee applies. Any fees will be discussed at the time of your visit.</p>
 					</div>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6">
 					<div class="counter-stat">
 						<i class="icofont-ambulance-cross"></i>
-							<h3 style="color: white;">Getting Your Results</h3>
-						
-						<p class="mt-4 mb-5">Your doctor will inform you when test or procedure results are expected. Please contact the clinic to obtain your results and discuss what they mean for your care</p>
+							<h3 style="color: white;" data-i18n="cta_results_title">Getting Your Results</h3>
+
+						<p class="mt-4 mb-5" data-i18n="cta_results_text">Your doctor will inform you when test or procedure results are expected. Please contact the clinic to obtain your results and discuss what they mean for your care</p>
 					</div>
 				</div>
 				
@@ -294,10 +362,10 @@
 		<div class="row justify-content-center">
 			<div class="col-lg-7 text-center">
 				<div class="section-title">
-					<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;">What We Offer</span>
-					<h2>Our Services</h2>
+					<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;" data-i18n="services_label">What We Offer</span>
+					<h2 data-i18n="services_heading">Our Services</h2>
 					<div class="divider mx-auto my-4"></div>
-					<p>A comprehensive range of bulk billed care, delivered by an experienced team, for every stage of life.</p>
+					<p data-i18n="services_intro">A comprehensive range of bulk billed care, delivered by an experienced team, for every stage of life.</p>
 				</div>
 			</div>
 		</div>
@@ -306,9 +374,10 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">01.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc1_title">General Health</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc10_title" data-i18n="svc10_title">Iron Infusion</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc1_desc">We offer thorough health checks for women, men, children, seniors, and sexual health, ensuring holistic care for every stage of life.</p>
+						<p class="mb-1"><span data-content-key="svc10_desc" data-i18n="svc10_desc">In-clinic iron infusions for patients with diagnosed iron deficiency, delivered safely under the supervision of our GPs.</span></p>
+						<p class="mb-4" data-i18n="svc10_bulk_billing"><strong>Bulk billing available with a valid Medicare card.</strong></p>
 					</div>
 				</div>
 			</div>
@@ -316,9 +385,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">02.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc2_title">Mental Health</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc1_title" data-i18n="svc1_title">General Health</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc2_desc">Our experienced team provides compassionate counselling and mental health management, supporting emotional wellbeing and resilience.</p>
+						<p class="mb-4" data-content-key="svc1_desc" data-i18n="svc1_desc">We offer thorough health checks for women, men, children, seniors, and sexual health, ensuring holistic care for every stage of life.</p>
 					</div>
 				</div>
 			</div>
@@ -326,9 +395,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">03.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc3_title">Minor Procedures</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc2_title" data-i18n="svc2_title">Mental Health</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc3_desc">We perform a range of minor surgical procedures, including cryosurgery and skin checks, right here in our clinic.</p>
+						<p class="mb-4" data-content-key="svc2_desc" data-i18n="svc2_desc">Our experienced team provides compassionate counselling and mental health management, supporting emotional wellbeing and resilience.</p>
 					</div>
 				</div>
 			</div>
@@ -336,9 +405,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">04.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc4_title">Vaccinations</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc3_title" data-i18n="svc3_title">Minor Procedures</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc4_desc">Stay protected with our full range of immunisations and seasonal flu shots, administered in a safe and supportive environment.</p>
+						<p class="mb-4" data-content-key="svc3_desc" data-i18n="svc3_desc">We perform a range of minor surgical procedures, including cryosurgery and skin checks, right here in our clinic.</p>
 					</div>
 				</div>
 			</div>
@@ -346,9 +415,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">05.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc5_title">Pregnancy Care</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc4_title" data-i18n="svc4_title">Vaccinations</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc5_desc">We support your journey with antenatal care and contraceptive services, including Implanon insertion and removal.</p>
+						<p class="mb-4" data-content-key="svc4_desc" data-i18n="svc4_desc">Stay protected with our full range of immunisations and seasonal flu shots, administered in a safe and supportive environment.</p>
 					</div>
 				</div>
 			</div>
@@ -356,9 +425,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">06.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc6_title">Chronic Disease</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc5_title" data-i18n="svc5_title">Pregnancy Care</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc6_desc">Our team helps you manage long-term conditions such as diabetes and hypertension, with a focus on lifestyle and weight management.</p>
+						<p class="mb-4" data-content-key="svc5_desc" data-i18n="svc5_desc">We support your journey with antenatal care and contraceptive services, including Implanon insertion and removal.</p>
 					</div>
 				</div>
 			</div>
@@ -366,9 +435,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">07.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc7_title">Workplace Injuries</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc6_title" data-i18n="svc6_title">Chronic Disease</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc7_desc">We accept WorkCover and CTP claims, offering timely assessment, treatment, and return-to-work planning.</p>
+						<p class="mb-4" data-content-key="svc6_desc" data-i18n="svc6_desc">Our team helps you manage long-term conditions such as diabetes and hypertension, with a focus on lifestyle and weight management.</p>
 					</div>
 				</div>
 			</div>
@@ -376,9 +445,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">08.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc8_title">Preventive Health</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc7_title" data-i18n="svc7_title">Workplace Injuries</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc8_desc">We focus on early detection, screening, and lifestyle advice to help you stay ahead of potential health issues.</p>
+						<p class="mb-4" data-content-key="svc7_desc" data-i18n="svc7_desc">We accept WorkCover and CTP claims, offering timely assessment, treatment, and return-to-work planning.</p>
 					</div>
 				</div>
 			</div>
@@ -386,9 +455,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">09.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc9_title">Immunization</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc8_title" data-i18n="svc8_title">Preventive Health</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc9_desc">A full childhood and adult immunisation schedule delivered under the National Immunisation Program, tracked and recorded on the Australian Immunisation Register.</p>
+						<p class="mb-4" data-content-key="svc8_desc" data-i18n="svc8_desc">We focus on early detection, screening, and lifestyle advice to help you stay ahead of potential health issues.</p>
 					</div>
 				</div>
 			</div>
@@ -396,9 +465,9 @@
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				<div class="service-item mb-4">
 					<span class="service-num">10.</span>
-					<h4 class="mt-3 mb-3" data-content-key="svc10_title">Iron Infusion</h4>
+					<h4 class="mt-3 mb-3" data-content-key="svc9_title" data-i18n="svc9_title">Immunization</h4>
 					<div class="content">
-						<p class="mb-4" data-content-key="svc10_desc">In-clinic iron infusions for patients with diagnosed iron deficiency, delivered safely under the supervision of our GPs.</p>
+						<p class="mb-4" data-content-key="svc9_desc" data-i18n="svc9_desc">A full childhood and adult immunisation schedule delivered under the National Immunisation Program, tracked and recorded on the Australian Immunisation Register.</p>
 					</div>
 				</div>
 			</div>
@@ -410,9 +479,9 @@
 <section class="section workcover-cta-section">
 	<div class="container">
 		<div class="workcover-cta-card">
-			<h3 data-content-key="svc7_title">Workplace Injuries</h3>
-			<p data-content-key="svc7_desc">We accept WorkCover and CTP claims, offering timely assessment, treatment, and return-to-work planning.</p>
-			<a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" class="btn btn-white btn-round-full">Book Online Now</a>
+			<h3 data-content-key="svc7_title" data-i18n="svc7_title">Workplace Injuries</h3>
+			<p data-content-key="svc7_desc" data-i18n="svc7_desc">We accept WorkCover and CTP claims, offering timely assessment, treatment, and return-to-work planning.</p>
+			<a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" class="btn btn-white btn-round-full" data-i18n="workcover_book_btn">Book Online Now</a>
 		</div>
 	</div>
 </section>
@@ -422,7 +491,7 @@
 		<div class="row align-items-center">
 			<div class="col-lg-6 ">
 				<div class="appoinment-content">
-					<img src="images/about/img-3.jpg" alt="" class="img-fluid">
+					<img loading="lazy" src="images/about/img-3.jpg" alt="" class="img-fluid">
 					<div class="emergency">
 						<h2 class="text-lg"><i class="icofont-phone-circle text-lg"></i>+23 345 67980</h2>
 					</div>
@@ -520,7 +589,7 @@
 					<i class="icofont-quote-right"></i>
 
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
+						<img loading="lazy" src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info ">
@@ -534,7 +603,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb2.jpg" alt="" class="img-fluid">
+						<img loading="lazy" src="images/team/test-thumb2.jpg" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">
@@ -550,7 +619,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb3.jpg" alt="" class="img-fluid">
+						<img loading="lazy" src="images/team/test-thumb3.jpg" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">
@@ -566,7 +635,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb4.jpg" alt="" class="img-fluid">
+						<img loading="lazy" src="images/team/test-thumb4.jpg" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">
@@ -581,7 +650,7 @@
 
 				<div class="testimonial-block style-2  gray-bg">
 					<div class="testimonial-thumb">
-						<img src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
+						<img loading="lazy" src="images/team/test-thumb1.jpg" alt="" class="img-fluid">
 					</div>
 
 					<div class="client-info">
@@ -601,21 +670,21 @@
 <section class="section clients">
 
 	<div class="container">
-		<p class="text-center trust-strip-label mb-4">Accredited &amp; Trusted</p>
+		<p class="text-center trust-strip-label mb-4" data-i18n="trust_label">Accredited &amp; Trusted</p>
 		<div class="row clients-logo">
 			<div class="col-lg-4 col-md-4 col-sm-6 mb-4 mb-lg-0">
 				<div class="client-thumb">
-					<img src="images/about/MedibulkbillP.webp" alt="" class="img-fluid">
+					<img loading="lazy" src="images/about/MedibulkbillP.webp" alt="Medicare Bulk Billing Practice badge" class="img-fluid">
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-6 mb-4 mb-lg-0">
 				<div class="client-thumb">
-					<img src="images/about/accredition.png" alt="" class="img-fluid">
+					<img loading="lazy" src="images/about/accredition.png" alt="Proudly AGPAL Accredited" class="img-fluid">
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-4 col-sm-6 mb-4 mb-lg-0">
 				<div class="client-thumb">
-					<img src="images/about/acl.webp" alt="" class="img-fluid">
+					<img loading="lazy" src="images/about/acl.webp" alt="Australian Clinical Labs" class="img-fluid">
 				</div>
 			</div>
 			
@@ -626,8 +695,8 @@
 
 <section class="section payments-section">
 	<div class="container">
-		<p class="text-center trust-strip-label mb-2">Payments</p>
-		<h3 class="text-center payments-subtitle mb-4">Payment methods accepted</h3>
+		<p class="text-center trust-strip-label mb-2" data-i18n="payments_label">Payments</p>
+		<h3 class="text-center payments-subtitle mb-4" data-i18n="payments_subtitle">Payment methods accepted</h3>
 		<div class="payments-row">
 			<div class="payment-badge">
 				<span class="payment-badge-eftpos">eftpos</span>
@@ -637,9 +706,9 @@
 			</div>
 		</div>
 
-		<p class="text-center trust-strip-label mb-2 mt-5">Health Funds</p>
-		<h3 class="text-center payments-subtitle mb-2">100% bulk billed with a valid Medicare card</h3>
-		<p class="text-center mb-4 funds-subtext">We also process DVA and private health fund claims via HICAPS for eligible services.</p>
+		<p class="text-center trust-strip-label mb-2 mt-5" data-i18n="funds_label">Health Funds</p>
+		<h3 class="text-center payments-subtitle mb-2" data-i18n="funds_subtitle">100% bulk billed with a valid Medicare card</h3>
+		<p class="text-center mb-4 funds-subtext" data-i18n="funds_subtext">We also process DVA and private health fund claims via HICAPS for eligible services.</p>
 		<div class="payments-row funds-row">
 			<div class="payment-badge payment-badge-sm"><span class="fund-badge fund-medicare">medicare</span></div>
 			<div class="payment-badge payment-badge-sm"><span class="fund-badge fund-dva">DVA</span></div>
@@ -649,7 +718,7 @@
 			<div class="payment-badge payment-badge-sm"><span class="fund-badge fund-nib">nib</span></div>
 			<div class="payment-badge payment-badge-sm"><span class="fund-badge fund-ahm">ahm</span></div>
 			<div class="payment-badge payment-badge-sm"><span class="fund-badge fund-cbhs">CBHS</span></div>
-			<div class="payment-badge payment-badge-sm"><span class="fund-badge fund-defence">Dept. of Defence</span></div>
+			<div class="payment-badge payment-badge-sm"><span class="fund-badge fund-defence" data-i18n="fund_defence">Dept. of Defence</span></div>
 		</div>
 	</div>
 </section>
@@ -658,9 +727,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-7 text-center">
-                <span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;">Common Questions</span>
-                <h2 class="title-color mb-3">Frequently Asked Questions</h2>
-                <p>Quick answers to the questions we're asked most &mdash; can't find what you need? <a href="contact.html">Get in touch</a>.</p>
+                <span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;" data-i18n="faq_label">Common Questions</span>
+                <h2 class="title-color mb-3" data-i18n="faq_heading">Frequently Asked Questions</h2>
+                <p data-i18n="faq_intro">Quick answers to the questions we're asked most &mdash; can't find what you need? <a href="contact.html">Get in touch</a>.</p>
             </div>
         </div>
         <div class="row justify-content-center">
@@ -669,71 +738,71 @@
 
                     <div class="faq-item">
                         <button class="faq-question" type="button" data-toggle="collapse" data-target="#home-faq-1" aria-expanded="true" aria-controls="home-faq-1">
-                            <span data-content-key="faq1_q">Do you bulk bill?</span>
+                            <span data-content-key="faq1_q" data-i18n="faq1_q">Do you bulk bill?</span>
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-1" class="collapse show faq-answer">
-                            <p data-content-key="faq1_a">Yes. All consultations at Dutton Street Medical Practice are 100% bulk billed for patients with a valid Medicare card.</p>
+                            <p data-content-key="faq1_a" data-i18n="faq1_a">Yes. All consultations at Dutton Street Medical Practice are 100% bulk billed for patients with a valid Medicare card.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-question" type="button" data-toggle="collapse" data-target="#home-faq-2" aria-expanded="false" aria-controls="home-faq-2">
-                            <span data-content-key="faq2_q">What are your opening hours?</span>
+                            <span data-content-key="faq2_q" data-i18n="faq2_q">What are your opening hours?</span>
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-2" class="collapse faq-answer">
-                            <p data-content-key="faq2_a">We're open Monday&ndash;Friday 9:00&nbsp;AM&ndash;5:00&nbsp;PM and Saturday&ndash;Sunday 8:00&nbsp;AM&ndash;2:00&nbsp;PM. We also offer extended evening hours on Monday and Thursday from 6:00&nbsp;PM&ndash;11:00&nbsp;PM through our After Hours service.</p>
+                            <p data-content-key="faq2_a" data-i18n="faq2_a">We're open Monday&ndash;Friday 9:00&nbsp;AM&ndash;5:00&nbsp;PM, Saturday 12:00&nbsp;PM&ndash;3:00&nbsp;PM, and Sunday 8:00&nbsp;AM&ndash;3:00&nbsp;PM. We also offer extended evening hours on Monday and Thursday from 6:00&nbsp;PM&ndash;11:00&nbsp;PM through our After Hours service.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-question" type="button" data-toggle="collapse" data-target="#home-faq-3" aria-expanded="false" aria-controls="home-faq-3">
-                            <span data-content-key="faq3_q">Is care available outside these hours?</span>
+                            <span data-content-key="faq3_q" data-i18n="faq3_q">Is care available outside these hours?</span>
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-3" class="collapse faq-answer">
-                            <p>Yes &mdash; our <a href="afterhours.html">After Hours service</a> operates Monday&ndash;Friday 6:00&nbsp;AM&ndash;11:00&nbsp;PM and Saturday&ndash;Sunday 9:00&nbsp;AM&ndash;6:00&nbsp;PM. For life-threatening emergencies, always call 000.</p>
+                            <p data-i18n="faq3_a">Yes &mdash; our <a href="afterhours.html">After Hours service</a> operates Monday&ndash;Friday 6:00&nbsp;AM&ndash;11:00&nbsp;PM, Saturday 12:00&nbsp;PM&ndash;3:00&nbsp;PM, and Sunday 8:00&nbsp;AM&ndash;3:00&nbsp;PM. For life-threatening emergencies, always call 000.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-question" type="button" data-toggle="collapse" data-target="#home-faq-4" aria-expanded="false" aria-controls="home-faq-4">
-                            <span data-content-key="faq4_q">How do I make an appointment?</span>
+                            <span data-content-key="faq4_q" data-i18n="faq4_q">How do I make an appointment?</span>
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-4" class="collapse faq-answer">
-                            <p>Book online in a few clicks via <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener">HotDoc</a> or <a href="https://healthengine.com.au/medical-centre/nsw/yagoona/dutton-street-medical-centre/s62282" target="_blank" rel="noopener">HealthEngine</a>, or call the clinic directly on <a href="tel:+61297092223">(02) 9709 2223</a>.</p>
+                            <p data-i18n="faq4_a">Book online in a few clicks via <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener">HotDoc</a> or <a href="https://healthengine.com.au/medical-centre/nsw/yagoona/dutton-street-medical-centre/s62282" target="_blank" rel="noopener">HealthEngine</a>, or call the clinic directly on <a href="tel:+61297092223">(02) 9709 2223</a>.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-question" type="button" data-toggle="collapse" data-target="#home-faq-5" aria-expanded="false" aria-controls="home-faq-5">
-                            <span data-content-key="faq5_q">What if I don't have Medicare?</span>
+                            <span data-content-key="faq5_q" data-i18n="faq5_q">What if I don't have Medicare?</span>
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-5" class="collapse faq-answer">
-                            <p data-content-key="faq5_a">Veterans may sign the relevant DVA service voucher. For patients without Medicare, a private consultation fee applies. Any fees will be discussed with you at the time of your visit.</p>
+                            <p data-content-key="faq5_a" data-i18n="faq5_a">Veterans may sign the relevant DVA service voucher. For patients without Medicare, a private consultation fee applies. Any fees will be discussed with you at the time of your visit.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-question" type="button" data-toggle="collapse" data-target="#home-faq-6" aria-expanded="false" aria-controls="home-faq-6">
-                            <span data-content-key="faq6_q">How do I get my test or procedure results?</span>
+                            <span data-content-key="faq6_q" data-i18n="faq6_q">How do I get my test or procedure results?</span>
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-6" class="collapse faq-answer">
-                            <p data-content-key="faq6_a">Your doctor will let you know when your results are expected. Please contact the clinic to obtain your results and discuss what they mean for your care.</p>
+                            <p data-content-key="faq6_a" data-i18n="faq6_a">Your doctor will let you know when your results are expected. Please contact the clinic to obtain your results and discuss what they mean for your care.</p>
                         </div>
                     </div>
 
                     <div class="faq-item">
                         <button class="faq-question" type="button" data-toggle="collapse" data-target="#home-faq-7" aria-expanded="false" aria-controls="home-faq-7">
-                            <span data-content-key="faq7_q">Is the practice accredited?</span>
+                            <span data-content-key="faq7_q" data-i18n="faq7_q">Is the practice accredited?</span>
                             <i class="icofont-simple-down faq-icon"></i>
                         </button>
                         <div id="home-faq-7" class="collapse faq-answer">
-                            <p data-content-key="faq7_a">Yes. We're an AGPAL accredited practice, partnered with Australian Clinical Labs for pathology services.</p>
+                            <p data-content-key="faq7_a" data-i18n="faq7_a">Yes. We're an AGPAL accredited practice, partnered with Australian Clinical Labs for pathology services.</p>
                         </div>
                     </div>
 
@@ -747,25 +816,25 @@
 	<div class="container">
 		<div class="row align-items-center">
 			<div class="col-lg-6">
-				<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #6fe3a0; font-weight: 700;">Book Now</span>
-				<h2 style="color: #fff;">Book your appointment</h2>
-				<p class="mt-3 mb-3" style="color: rgba(247, 239, 224, 0.85);">We're always welcoming new patients. Book by phone, email, or online in a few clicks via HotDoc or HealthEngine.</p>
-				<p style="color: rgba(247, 239, 224, 0.7); font-size: 15px;">For urgent medical needs outside our hours, call <strong style="color:#fff;">000</strong> in an emergency.</p>
+				<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #6fe3a0; font-weight: 700;" data-i18n="booknow_label">Book Now</span>
+				<h2 style="color: #fff;" data-i18n="booknow_heading">Book your appointment</h2>
+				<p class="mt-3 mb-3" style="color: rgba(247, 239, 224, 0.85);" data-i18n="booknow_text">We're always welcoming new patients. Book by phone, email, or online in a few clicks via HotDoc or HealthEngine.</p>
+				<p style="color: rgba(247, 239, 224, 0.7); font-size: 15px;" data-i18n="booknow_emergency">For urgent medical needs outside our hours, call <strong style="color:#fff;">000</strong> in an emergency.</p>
 			</div>
 			<div class="col-lg-6 mt-4 mt-lg-0">
 				<div class="booking-method-stack">
 					<a href="#" data-toggle="modal" data-target="#bookingModal" class="booking-method-card is-accent">
 						<span class="booking-method-icon"><i class="icofont-calendar"></i></span>
 						<span>
-							<span class="booking-method-title">Book Online</span>
-							<span class="booking-method-sub">Via HotDoc or HealthEngine</span>
+							<span class="booking-method-title" data-i18n="booking_online_title">Book Online</span>
+							<span class="booking-method-sub" data-i18n="booking_online_sub">Via HotDoc or HealthEngine</span>
 						</span>
 						<i class="icofont-simple-right ml-auto"></i>
 					</a>
 					<a href="tel:+61297092223" class="booking-method-card">
 						<span class="booking-method-icon"><i class="icofont-telephone"></i></span>
 						<span>
-							<span class="booking-method-title">Call Us</span>
+							<span class="booking-method-title" data-i18n="booking_call_title">Call Us</span>
 							<span class="booking-method-sub">(02) 9709 2223</span>
 						</span>
 						<i class="icofont-simple-right ml-auto"></i>
@@ -773,7 +842,7 @@
 					<a href="mailto:reception@duttonstreetmed.com.au" class="booking-method-card">
 						<span class="booking-method-icon"><i class="icofont-email"></i></span>
 						<span>
-							<span class="booking-method-title">Email Us</span>
+							<span class="booking-method-title" data-i18n="booking_email_title">Email Us</span>
 							<span class="booking-method-sub">reception@duttonstreetmed.com.au</span>
 						</span>
 						<i class="icofont-simple-right ml-auto"></i>
@@ -788,43 +857,43 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-6">
-				<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;">Location &amp; Contact</span>
-				<h2 class="title-color mb-4">Find us in Yagoona</h2>
+				<span class="text-uppercase text-sm letter-spacing d-inline-block mb-2" style="color: #00ac47; font-weight: 700;" data-i18n="findus_label">Location &amp; Contact</span>
+				<h2 class="title-color mb-4" data-i18n="findus_heading">Find us in Yagoona</h2>
 
 				<ul class="list-unstyled contact-icon-list mb-4">
 					<li>
 						<span class="contact-icon-circle"><i class="icofont-location-pin"></i></span>
 						<span>
-							<span class="contact-icon-label">Address</span>
-							<span class="contact-icon-value" data-content-key="contact_address">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</span>
+							<span class="contact-icon-label" data-i18n="findus_address_label">Address</span>
+							<span class="contact-icon-value" data-content-key="contact_address" data-i18n="contact_address">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</span>
 						</span>
 					</li>
 					<li>
 						<span class="contact-icon-circle"><i class="icofont-telephone"></i></span>
 						<span>
-							<span class="contact-icon-label">Phone</span>
-							<span class="contact-icon-value"><a href="tel:+61297092223" data-content-attr="href:contact_phone_href" data-content-key="contact_phone">(02) 9709 2223</a></span>
+							<span class="contact-icon-label" data-i18n="findus_phone_label">Phone</span>
+							<span class="contact-icon-value"><a href="tel:+61297092223" data-content-attr="href:contact_phone_href" data-content-key="contact_phone" data-i18n="contact_phone">(02) 9709 2223</a></span>
 						</span>
 					</li>
 					<li>
 						<span class="contact-icon-circle"><i class="icofont-fax"></i></span>
 						<span>
-							<span class="contact-icon-label">Fax</span>
-							<span class="contact-icon-value" data-content-key="contact_fax">02 9709 2224</span>
+							<span class="contact-icon-label" data-i18n="findus_fax_label">Fax</span>
+							<span class="contact-icon-value" data-content-key="contact_fax" data-i18n="contact_fax">02 9709 2224</span>
 						</span>
 					</li>
 					<li>
 						<span class="contact-icon-circle"><i class="icofont-email"></i></span>
 						<span>
-							<span class="contact-icon-label">Email</span>
-							<span class="contact-icon-value"><a href="mailto:reception@duttonstreetmed.com.au" data-content-attr="href:contact_email_href" data-content-key="contact_email">reception@duttonstreetmed.com.au</a></span>
+							<span class="contact-icon-label" data-i18n="findus_email_label">Email</span>
+							<span class="contact-icon-value"><a href="mailto:reception@duttonstreetmed.com.au" data-content-attr="href:contact_email_href" data-content-key="contact_email" data-i18n="contact_email">reception@duttonstreetmed.com.au</a></span>
 						</span>
 					</li>
 					<li>
 						<span class="contact-icon-circle"><i class="icofont-car"></i></span>
 						<span>
-							<span class="contact-icon-label">Parking</span>
-							<span class="contact-icon-value">Plenty of street parking nearby, plus public parking at the rear of the building</span>
+							<span class="contact-icon-label" data-i18n="findus_parking_label">Parking</span>
+							<span class="contact-icon-value" data-i18n="findus_parking_value">Plenty of street parking nearby, plus public parking at the rear of the building</span>
 						</span>
 					</li>
 				</ul>
@@ -836,17 +905,17 @@
 
 			<div class="col-lg-6 mt-5 mt-lg-0">
 				<div class="opening-hours-card">
-					<div class="opening-hours-header">Opening Hours</div>
+					<div class="opening-hours-header" data-i18n="findus_hours_header">Opening Hours</div>
 					<ul class="list-unstyled opening-hours-table">
-						<li data-days="mon" class="d-flex justify-content-between"><span>Monday</span><span><span data-content-key="hours_mon">9:00 AM &ndash; 5:00 PM</span><span class="after-hours-tag" data-content-key="hours_afterhours_note">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
-						<li data-days="tue" class="d-flex justify-content-between"><span>Tuesday</span><span data-content-key="hours_tue">9:00 AM &ndash; 5:00 PM</span></li>
-						<li data-days="wed" class="d-flex justify-content-between"><span>Wednesday</span><span data-content-key="hours_wed">9:00 AM &ndash; 5:00 PM</span></li>
-						<li data-days="thu" class="d-flex justify-content-between"><span>Thursday</span><span><span data-content-key="hours_thu">9:00 AM &ndash; 5:00 PM</span><span class="after-hours-tag" data-content-key="hours_afterhours_note">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
-						<li data-days="fri" class="d-flex justify-content-between"><span>Friday</span><span data-content-key="hours_fri">9:00 AM &ndash; 5:00 PM</span></li>
-						<li data-days="sat" class="d-flex justify-content-between"><span>Saturday</span><span data-content-key="hours_sat">8:00 AM &ndash; 2:00 PM</span></li>
-						<li data-days="sun" class="d-flex justify-content-between"><span>Sunday</span><span data-content-key="hours_sun">8:00 AM &ndash; 2:00 PM</span></li>
+						<li data-days="mon" class="d-flex justify-content-between"><span data-i18n="day_monday">Monday</span><span><span data-content-key="hours_mon" data-i18n="hours_mon">9:00 AM &ndash; 5:00 PM</span><span class="after-hours-tag" data-content-key="hours_afterhours_note" data-i18n="hours_afterhours_note">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
+						<li data-days="tue" class="d-flex justify-content-between"><span data-i18n="day_tuesday">Tuesday</span><span data-content-key="hours_tue" data-i18n="hours_tue">9:00 AM &ndash; 5:00 PM</span></li>
+						<li data-days="wed" class="d-flex justify-content-between"><span data-i18n="day_wednesday">Wednesday</span><span data-content-key="hours_wed" data-i18n="hours_wed">9:00 AM &ndash; 5:00 PM</span></li>
+						<li data-days="thu" class="d-flex justify-content-between"><span data-i18n="day_thursday">Thursday</span><span><span data-content-key="hours_thu" data-i18n="hours_thu">9:00 AM &ndash; 5:00 PM</span><span class="after-hours-tag" data-content-key="hours_afterhours_note" data-i18n="hours_afterhours_note">6:00 PM &ndash; 11:00 PM &middot; After Hours</span></span></li>
+						<li data-days="fri" class="d-flex justify-content-between"><span data-i18n="day_friday">Friday</span><span data-content-key="hours_fri" data-i18n="hours_fri">9:00 AM &ndash; 5:00 PM</span></li>
+						<li data-days="sat" class="d-flex justify-content-between"><span data-i18n="day_saturday">Saturday</span><span data-content-key="hours_sat" data-i18n="hours_sat">12:00 PM &ndash; 3:00 PM</span></li>
+						<li data-days="sun" class="d-flex justify-content-between"><span data-i18n="day_sunday">Sunday</span><span data-content-key="hours_sun" data-i18n="hours_sun">8:00 AM &ndash; 3:00 PM</span></li>
 					</ul>
-					<div class="opening-hours-note">
+					<div class="opening-hours-note" data-i18n="findus_bulk_billing_note">
 						<strong>Bulk billing.</strong> All consultations are 100% bulk billed for patients with a valid Medicare card. Need care outside these hours? See our <a href="afterhours.html">After Hours service</a>.
 					</div>
 				</div>
@@ -862,9 +931,9 @@
 			<div class="col-lg-4 mr-auto col-sm-6">
 				<div class="widget mb-5 mb-lg-0">
 					<div class="logo mb-4">
-						<img src="images/DSLogo.svg" alt="" class="img-fluid">
+						<img loading="lazy" src="images/DSLogo.svg" alt="Dutton Street Medical Practice logo" class="img-fluid">
 					</div>
-					<p>We at Dutton Street Medical Practice, provide compassionate, high-quality healthcare services to our community.</p>
+					<p data-i18n="footer_tagline">We at Dutton Street Medical Practice, provide compassionate, high-quality healthcare services to our community.</p>
 <!--
 					<ul class="list-inline footer-socials mt-4">
 						<li class="list-inline-item"><a href="https://www.facebook.com/themefisher"><i class="icofont-facebook"></i></a></li>
@@ -877,15 +946,15 @@
 
 			<div class="col-lg-2 col-md-6 col-sm-6">
 				<div class="widget mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Pages</h4>
+					<h4 class="text-capitalize mb-3" data-i18n="footer_pages_heading">Pages</h4>
 					<div class="divider mb-4"></div>
 
 					<ul class="list-unstyled footer-menu lh-35">
-						<li><a href="service.html">Service </a></li>
-						<li><a href="afterhours.html">After Hours</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="contact.html">Contact</a></li>
-						<li><a href="privacy-policy.html">Privacy Policy</a></li>
+						<li><a href="service.html"><span data-i18n="footer_nav_service">Service </span></a></li>
+						<li><a href="afterhours.html"><span data-i18n="nav_afterhours">After Hours</span></a></li>
+						<li><a href="about.html"><span data-i18n="nav_about">About</span></a></li>
+						<li><a href="contact.html"><span data-i18n="nav_contact">Contact</span></a></li>
+						<li><a href="privacy-policy.html"><span data-i18n="footer_privacy">Privacy Policy</span></a></li>
 
 					</ul>
 				</div>
@@ -895,37 +964,37 @@
 
 			<div class="col-lg-3 col-md-6 col-sm-6">
 				<div class="widget widget-contact mb-5 mb-lg-0">
-					<h4 class="text-capitalize mb-3">Get in Touch</h4>
+					<h4 class="text-capitalize mb-3" data-i18n="footer_get_in_touch">Get in Touch</h4>
 					<div class="divider mb-4"></div>
 					<div class="footer-contact-block mb-4">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-email mr-3"></i>
-							<span class="h6 mb-0">Support Available for 24/7</span>
+							<span class="h6 mb-0" data-i18n="footer_support_247">Support Available for 24/7</span>
 						</div>
-						<h4 class="mt-2"><a href="mailto:reception@duttonstreetmed.com.au" data-content-attr="href:contact_email_href"><span data-content-key="contact_email">reception@duttonstreetmed.com.au</span></a></h4>
+						<h4 class="mt-2"><a href="mailto:reception@duttonstreetmed.com.au" data-content-attr="href:contact_email_href"><span data-content-key="contact_email" data-i18n="contact_email">reception@duttonstreetmed.com.au</span></a></h4>
 					</div>
 
 					<div class="footer-contact-block">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-support mr-3"></i>
-							<span class="h6 mb-0">Call now</span>
+							<span class="h6 mb-0" data-i18n="footer_call_now">Call now</span>
 						</div>
-						<h4 class="mt-2"><a href="tel:+61297092223" data-content-attr="href:contact_phone_href"><span data-content-key="contact_phone">02 9709 2223</span></a></h4>
+						<h4 class="mt-2"><a href="tel:+61297092223" data-content-attr="href:contact_phone_href"><span data-content-key="contact_phone" data-i18n="contact_phone">02 9709 2223</span></a></h4>
 					</div>
 						<div class="footer-contact-block">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-fax mr-3"></i>
-							<span class="h6 mb-0">Fax now</span>
+							<span class="h6 mb-0" data-i18n="footer_fax_now">Fax now</span>
 						</div>
-						<h4 class="mt-2" data-content-key="contact_fax">02 9709 2224</h4>
+						<h4 class="mt-2" data-content-key="contact_fax" data-i18n="contact_fax">02 9709 2224</h4>
 					</div>
 
 						<div class="footer-contact-block">
 						<div class="icon d-flex align-items-center">
 							<i class="icofont-location-pin mr-3"></i>
-							<span class="h6 mb-0">Address </span>
+							<span class="h6 mb-0" data-i18n="footer_address_label">Address </span>
 						</div>
-						<h4 class="mt-2" data-content-key="contact_address">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</h4>
+						<h4 class="mt-2" data-content-key="contact_address" data-i18n="contact_address">Shop 1 3/124/132 Dutton St, Yagoona NSW 2199</h4>
 					</div>
 				</div>
 			</div>
@@ -959,18 +1028,18 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content booking-modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="bookingModalLabel">Book an Appointment</h5>
+        <h5 class="modal-title" id="bookingModalLabel" data-i18n="modal_title">Book an Appointment</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p class="mb-4">Choose how you'd like to book online:</p>
+        <p class="mb-4" data-i18n="modal_intro">Choose how you'd like to book online:</p>
         <div class="booking-modal-options">
           <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener" class="booking-modal-option">
             <span class="booking-method-icon"><i class="icofont-calendar"></i></span>
             <span>
-              <span class="booking-method-title">Book via HotDoc</span>
+              <span class="booking-method-title" data-i18n="modal_hotdoc_title">Book via HotDoc</span>
               <span class="booking-method-sub">hotdoc.com.au</span>
             </span>
             <i class="icofont-simple-right ml-auto"></i>
@@ -978,7 +1047,7 @@
           <a href="https://healthengine.com.au/medical-centre/nsw/yagoona/dutton-street-medical-centre/s62282" target="_blank" rel="noopener" class="booking-modal-option">
             <span class="booking-method-icon"><i class="icofont-calendar"></i></span>
             <span>
-              <span class="booking-method-title">Book via HealthEngine</span>
+              <span class="booking-method-title" data-i18n="modal_healthengine_title">Book via HealthEngine</span>
               <span class="booking-method-sub">healthengine.com.au</span>
             </span>
             <i class="icofont-simple-right ml-auto"></i>
@@ -999,18 +1068,19 @@
     <!-- Bootstrap 4.3.2 -->
     <script src="plugins/bootstrap/js/popper.js"></script>
     <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script src="plugins/counterup/jquery.easing.js"></script>
     <!-- Slick Slider -->
     <script src="plugins/slick-carousel/slick/slick.min.js"></script>
     <!-- Counterup -->
     <script src="plugins/counterup/jquery.waypoints.min.js"></script>
     
-    <script src="plugins/shuffle/shuffle.min.js"></script>
     <script src="plugins/counterup/jquery.counterup.min.js"></script>
     <!-- Google Map -->
     <script src="js/script.js"></script>
     <script src="js/contact.js"></script>
     <script src="js/content.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/i18n-ar.js"></script>
+    <script src="js/i18n.js"></script>
     <script>
       (function () {
         var days = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
