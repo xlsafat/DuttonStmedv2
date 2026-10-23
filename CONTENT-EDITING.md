@@ -71,7 +71,7 @@ copy after you save).
 |---|---|
 | `contact_phone`, `contact_fax`, `contact_email`, `contact_address` | Shown in the header, footer, and contact pages on every page |
 | `contact_phone_href`, `contact_email_href` | The actual `tel:`/`mailto:` links behind the phone/email — keep these in the exact format shown (`tel:+61...`, `mailto:...`) |
-| `hours_mon` … `hours_sun`, `hours_summary`, `hours_afterhours_note` | Regular opening hours shown on the homepage |
+| `hours_mon` … `hours_sun`, `hours_summary`, `hours_afterhours_time` | Regular opening hours shown on the homepage |
 | `afterhours_weekday`, `afterhours_saturday`, `afterhours_sunday` | Hours shown on the dedicated After Hours page |
 | `afterhours_phone`, `afterhours_phone_href`, `afterhours_fax` | The After Hours line's own phone/fax (separate from the main clinic number) |
 | `fees_note` | The billing/fees paragraph on the homepage |

@@ -49,7 +49,7 @@ window.DSMP_AR_DICT = {
   hours_sat: "١٢:٠٠ ظهراً – ٣:٠٠ مساءً",
   hours_sun: "٨:٠٠ صباحاً – ٣:٠٠ مساءً",
   hours_summary: "الإثنين–الجمعة ٩ص–٥م · السبت ١٢–٣م · الأحد ٨ص–٣م",
-  hours_afterhours_note: "٦:٠٠ مساءً – ١١:٠٠ مساءً · خارج أوقات الدوام",
+  hours_afterhours_time: "٦:٠٠ مساءً – ١١:٠٠ مساءً",
   days_mon_fri: "الإثنين - الجمعة",
   days_sat_sun: "السبت - الأحد",
 

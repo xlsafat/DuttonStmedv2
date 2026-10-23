@@ -13,7 +13,7 @@ hours_thu,9:00 AM – 5:00 PM
 hours_fri,9:00 AM – 5:00 PM
 hours_sat,12:00 PM – 3:00 PM
 hours_sun,8:00 AM – 3:00 PM
-hours_afterhours_note,6:00 PM – 11:00 PM · After Hours
+hours_afterhours_time,6:00 PM – 11:00 PM
 afterhours_weekday,6:00 AM – 11:00 PM
 afterhours_saturday,12:00 PM – 3:00 PM
 afterhours_sunday,8:00 AM – 3:00 PM
