@@ -1,5 +1,6 @@
 /*
- * Language engine — English / Arabic switcher with RTL support.
+ * Language engine — English / Arabic / Mandarin (Simplified Chinese)
+ * switcher, with RTL support for Arabic.
  *
  * How it coordinates with the rest of the site:
  * - Every translatable element carries data-i18n="<key>" (text/markup) and/or
@@ -9,27 +10,31 @@
  *   may already include content.js's Google Sheet text. Switching back to
  *   English restores that cache.
  * - content.js (the Sheet-driven content loader) is language-aware: it skips
- *   writing to the DOM while Arabic is active, and exposes
+ *   writing to the DOM while a non-English language is active, and exposes
  *   window.DSMP_reapplySheetContent() so this file can ask it to re-apply
  *   the live Sheet text the moment the visitor switches back to English
  *   (instead of relying on a possibly-stale cached snapshot).
  * - js/lang-init.js sets the lang/dir attributes before paint, so there's no
  *   flash of the wrong *direction*. The text itself swaps once this file and
- *   the dictionary (js/i18n-ar.js) have loaded — a brief, normal moment of
- *   English text is expected on a fresh load with Arabic already saved.
+ *   the relevant dictionary (js/i18n-ar.js or js/i18n-zh.js) have loaded — a
+ *   brief, normal moment of English text is expected on a fresh load with a
+ *   non-English language already saved.
  */
 (function () {
   'use strict';
 
   var KEY = 'dsmp-language';
-  var DICT = window.DSMP_AR_DICT || {};
+  var DICTS = {
+    ar: window.DSMP_AR_DICT || {},
+    zh: window.DSMP_ZH_DICT || {}
+  };
   var originalHtml = new WeakMap();
   var originalAttrs = new WeakMap();
 
   function getLang() {
     try {
       var v = localStorage.getItem(KEY);
-      if (v === 'ar' || v === 'en') return v;
+      if (v === 'ar' || v === 'zh' || v === 'en') return v;
     } catch (e) {}
     return 'en';
   }
@@ -41,13 +46,14 @@
   }
 
   function translateTextNodes(lang) {
+    var dict = DICTS[lang];
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       if (!originalHtml.has(el)) {
         originalHtml.set(el, el.innerHTML);
       }
-      if (lang === 'ar') {
-        var translation = DICT[key];
+      if (dict) {
+        var translation = dict[key];
         if (translation !== undefined) {
           el.innerHTML = translation;
         }
@@ -58,6 +64,7 @@
   }
 
   function translateAttrs(lang) {
+    var dict = DICTS[lang];
     document.querySelectorAll('[data-i18n-attr]').forEach(function (el) {
       var spec = el.getAttribute('data-i18n-attr');
       var pairs = spec.split(';').filter(Boolean);
@@ -73,8 +80,8 @@
         if (cache[attr] === undefined) {
           cache[attr] = el.getAttribute(attr) || '';
         }
-        if (lang === 'ar' && DICT[key] !== undefined) {
-          el.setAttribute(attr, DICT[key]);
+        if (dict && dict[key] !== undefined) {
+          el.setAttribute(attr, dict[key]);
         } else {
           el.setAttribute(attr, cache[attr]);
         }
@@ -92,11 +99,16 @@
     });
     var label = toggle.querySelector('[data-lang-label]');
     if (label) {
-      label.textContent = lang === 'ar' ? 'AR' : 'EN';
+      label.textContent = lang === 'ar' ? 'AR' : (lang === 'zh' ? '中文' : 'EN');
     }
     var btn = document.getElementById('lang-toggle-btn');
     if (btn) {
-      btn.setAttribute('aria-label', lang === 'ar' ? 'اللغة: العربية' : 'Language: English');
+      var ariaLabels = {
+        ar: 'اللغة: العربية',
+        zh: '语言:中文',
+        en: 'Language: English'
+      };
+      btn.setAttribute('aria-label', ariaLabels[lang] || ariaLabels.en);
     }
   }
 

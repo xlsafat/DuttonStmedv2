@@ -89,22 +89,23 @@
     return data;
   }
 
-  function isArabicActive() {
+  function isTranslationActive() {
     try {
-      return localStorage.getItem('dsmp-language') === 'ar';
+      var lang = localStorage.getItem('dsmp-language');
+      return lang === 'ar' || lang === 'zh';
     } catch (e) {
       return false;
     }
   }
 
   function applyContent(data) {
-    // The sheet only ever holds English text. While Arabic is showing,
-    // writing it in would silently clobber the translated text — so just
-    // cache the data (done by the caller) and skip the DOM writes. When the
-    // visitor switches back to English, js/i18n.js calls
+    // The sheet only ever holds English text. While a translation is
+    // showing, writing it in would silently clobber the translated text —
+    // so just cache the data (done by the caller) and skip the DOM writes.
+    // When the visitor switches back to English, js/i18n.js calls
     // window.DSMP_reapplySheetContent(), which re-runs this with the same
     // cached data.
-    if (isArabicActive()) {
+    if (isTranslationActive()) {
       return;
     }
 

@@ -4197,7 +4197,7 @@ textarea:focus-visible {
   color: var(--primary-dark);
 }
 
-/* Arabic machine-translation disclaimer banner */
+/* Machine-translation disclaimer banner (Arabic/Chinese) */
 .lang-disclaimer {
   display: none;
   background: #fff7e6;
@@ -4208,7 +4208,7 @@ textarea:focus-visible {
   padding: 8px 16px;
 }
 
-[dir="rtl"] .lang-disclaimer {
+html:not([lang="en"]) .lang-disclaimer {
   display: block;
 }
 

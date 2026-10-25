@@ -4,13 +4,13 @@
  * the wrong text direction. Must stay dependency-free so it can run
  * synchronously inline in <head>, same pattern as theme-init.js.
  * The actual text swap happens later in js/i18n.js, once the DOM and the
- * translation dictionary have loaded.
+ * translation dictionaries (js/i18n-ar.js, js/i18n-zh.js) have loaded.
  */
 (function () {
   'use strict';
   try {
     var lang = localStorage.getItem('dsmp-language');
-    if (lang !== 'ar') { lang = 'en'; }
+    if (lang !== 'ar' && lang !== 'zh') { lang = 'en'; }
     document.documentElement.setAttribute('lang', lang);
     document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
   } catch (e) {}
