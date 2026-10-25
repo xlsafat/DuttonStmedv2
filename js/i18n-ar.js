@@ -56,7 +56,7 @@ window.DSMP_AR_DICT = {
 
   /* After Hours line hours (the After Hours page itself has its own
      English-first copy — this covers the homepage/contact references) */
-  afterhours_weekday: "٦:٠٠ صباحاً – ١١:٠٠ مساءً",
+  afterhours_weekday: "٦:٠٠ مساءً – ١١:٠٠ مساءً",
   afterhours_saturday: "١٢:٠٠ ظهراً – ٣:٠٠ مساءً",
   afterhours_sunday: "٨:٠٠ صباحاً – ٣:٠٠ مساءً",
 
@@ -185,7 +185,7 @@ window.DSMP_AR_DICT = {
   faq_label: "أسئلة شائعة",
   faq_heading: "الأسئلة الشائعة",
   faq_intro: 'إجابات سريعة لأكثر الأسئلة شيوعاً &mdash; لم تجد ما تبحث عنه؟ <a href="contact.html">تواصل معنا</a>.',
-  faq3_a: 'نعم &mdash; تعمل خدمة <a href="afterhours.html">ما بعد الدوام</a> لدينا من الإثنين إلى الجمعة من الساعة ٦:٠٠ صباحاً حتى ١١:٠٠ مساءً، ويوم السبت من الساعة ١٢:٠٠ ظهراً حتى ٣:٠٠ مساءً، ويوم الأحد من الساعة ٨:٠٠ صباحاً حتى ٣:٠٠ مساءً. في حالات الطوارئ التي تهدد الحياة، يُرجى دائماً الاتصال بالرقم 000.',
+  faq3_a: 'نعم &mdash; تعمل خدمة <a href="afterhours.html">ما بعد الدوام</a> لدينا من الإثنين إلى الجمعة من الساعة ٦:٠٠ مساءً حتى ١١:٠٠ مساءً، ويوم السبت من الساعة ١٢:٠٠ ظهراً حتى ٣:٠٠ مساءً، ويوم الأحد من الساعة ٨:٠٠ صباحاً حتى ٣:٠٠ مساءً. في حالات الطوارئ التي تهدد الحياة، يُرجى دائماً الاتصال بالرقم 000.',
   faq4_a: 'احجز عبر الإنترنت خلال دقائق عبر <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener">HotDoc</a> أو <a href="https://healthengine.com.au/medical-centre/nsw/yagoona/dutton-street-medical-centre/s62282" target="_blank" rel="noopener">HealthEngine</a>، أو اتصل بالعيادة مباشرة على <a href="tel:+61297092223">(02) 9709 2223</a>.',
 
   /* Book Now section */

@@ -56,7 +56,7 @@ window.DSMP_ZH_DICT = {
 
   /* After Hours line hours (the After Hours page itself has its own
      English-first copy — this covers the homepage/contact references) */
-  afterhours_weekday: "6:00&ndash;23:00",
+  afterhours_weekday: "18:00&ndash;23:00",
   afterhours_saturday: "12:00&ndash;15:00",
   afterhours_sunday: "8:00&ndash;15:00",
 
@@ -185,7 +185,7 @@ window.DSMP_ZH_DICT = {
   faq_label: "常见问题",
   faq_heading: "常见问题解答",
   faq_intro: '快速解答我们最常被问到的问题 &mdash; 没有找到您需要的答案？请 <a href="contact.html">联系我们</a>。',
-  faq3_a: '是的 &mdash; 我们的 <a href="afterhours.html">下班后服务</a> 在星期一至星期五6:00&ndash;23:00、星期六12:00&ndash;15:00、星期日8:00&ndash;15:00提供服务。如遇危及生命的紧急情况，请始终致电000。',
+  faq3_a: '是的 &mdash; 我们的 <a href="afterhours.html">下班后服务</a> 在星期一至星期五18:00&ndash;23:00、星期六12:00&ndash;15:00、星期日8:00&ndash;15:00提供服务。如遇危及生命的紧急情况，请始终致电000。',
   faq4_a: '只需点击几下，通过 <a href="https://www.hotdoc.com.au/medical-centres/yagoona-NSW-2199/dutton-street-medical-centre/doctors" target="_blank" rel="noopener">HotDoc</a> 或 <a href="https://healthengine.com.au/medical-centre/nsw/yagoona/dutton-street-medical-centre/s62282" target="_blank" rel="noopener">HealthEngine</a> 即可在线预约，或直接致电诊所 <a href="tel:+61297092223">(02) 9709 2223</a>。',
 
   /* Book Now section */
