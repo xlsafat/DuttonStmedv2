@@ -53,6 +53,8 @@ svc9_title,Immunization
 svc9_desc,"A full childhood and adult immunisation schedule delivered under the National Immunisation Program, tracked and recorded on the Australian Immunisation Register."
 svc10_title,Iron Infusion
 svc10_desc,"In-clinic iron infusions for patients with diagnosed iron deficiency, delivered safely under the supervision of our GPs."
+svc11_title,Telehealth
+svc11_desc,"Phone consultations are available for eligible patients who can't make it in person — just ask our reception team when you book."
 spc_gastro_title,Gastroenterology
 spc_gastro_desc,Diagnosis and treatment of conditions affecting the digestive system.
 spc_internal_title,Internal Medicine

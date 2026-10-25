@@ -84,6 +84,8 @@ window.DSMP_ZH_DICT = {
   svc9_desc: "依照国家免疫计划提供完整的儿童及成人免疫接种，并记录在澳大利亚免疫登记系统中。",
   svc10_title: "静脉补铁",
   svc10_desc: "为确诊缺铁的患者提供诊所内静脉补铁治疗，在我们全科医生的监督下安全进行。",
+  svc11_title: "远程医疗",
+  svc11_desc: "符合条件但无法亲自到诊的患者，可选择电话问诊——预约时请告知我们的前台工作人员。",
 
   /* Specialist Services */
   spc_gastro_title: "胃肠病学",

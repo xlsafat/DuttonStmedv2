@@ -75,7 +75,7 @@ copy after you save).
 | `afterhours_weekday`, `afterhours_saturday`, `afterhours_sunday` | Hours shown on the dedicated After Hours page |
 | `afterhours_phone`, `afterhours_phone_href`, `afterhours_fax` | The After Hours line's own phone/fax (separate from the main clinic number) |
 | `fees_note` | The billing/fees paragraph on the homepage |
-| `svc1_title`/`svc1_desc` … `svc10_title`/`svc10_desc` | The 10 general services (shown on both the homepage and Services page) |
+| `svc1_title`/`svc1_desc` … `svc11_title`/`svc11_desc` | The 11 general services (shown on both the homepage and Services page) |
 | `spc_gastro_title`/`spc_gastro_desc`, `spc_internal_title`/`spc_internal_desc`, `spc_paed_title`/`spc_paed_desc` | The 3 Specialist Services (Gastroenterology, Internal Medicine, Paediatrics) |
 | `ah1_title`/`ah1_desc` … `ah5_title`/`ah5_desc` | The 5 Allied Health Services |
 | `faq1_q` … `faq7_q` | All 7 FAQ questions (homepage and Contact page) |
