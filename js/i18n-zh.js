@@ -135,9 +135,9 @@ window.DSMP_ZH_DICT = {
   hero_card_billing_value: "持有效Medicare卡的所有患者均可享受100%整批计费的全科诊症。",
 
   /* Appointment / hours info cards */
-  appt_card1_subtitle: "全天候服务",
+  appt_card1_subtitle: "每周七天开放 · 晚间另有下班后服务",
   appt_card1_title: "在线预约",
-  appt_card1_text: "随时为您提供紧急支持。我们秉持家庭医学理念，确保您与家人获得持续的医疗照护。",
+  appt_card1_text: "可在线或致电预约，一周七天均可预约——晚间及周末可通过我们的下班后服务获得照护。如遇危及生命的紧急情况，请始终致电000。",
   appt_card1_btn: "立即预约",
   appt_card2_subtitle: "时间安排",
   appt_card2_title: "营业时间",
