@@ -360,6 +360,8 @@ window.DSMP_ZH_DICT = {
   ah_hero_h1_3: "，随时为您提供",
   ah_hero_subtext: "这是一项免预约的即诊服务 &mdash; 无需提前预约。持有效Medicare卡的所有患者均可享受100%整批计费。",
   ah_hero_call_btn: "致电下班后服务专线",
+  ah_book_online_btn: "在线预约",
+  ah_book_online_note: "下班后服务的在线预约仅在服务时间内开放。",
   ah_card_walkin_label: "免预约即诊服务",
   ah_card_walkin_value: "无需预约 &mdash; 直接前来即可",
   day_monday_friday: "星期一至星期五",
