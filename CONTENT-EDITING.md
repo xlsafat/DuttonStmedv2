@@ -69,8 +69,8 @@ copy after you save).
 
 | Sheet keys | What it controls |
 |---|---|
-| `contact_phone`, `contact_fax`, `contact_email`, `contact_address` | Shown in the header, footer, and contact pages on every page |
-| `contact_phone_href`, `contact_email_href` | The actual `tel:`/`mailto:` links behind the phone/email — keep these in the exact format shown (`tel:+61...`, `mailto:...`) |
+| `contact_phone`, `contact_fax`, `contact_address` | Shown in the header, footer, and contact pages on every page |
+| `contact_phone_href` | The actual `tel:` link behind the phone number — keep this in the exact format shown (`tel:+61...`) |
 | `hours_mon` … `hours_sun`, `hours_summary`, `hours_afterhours_time` | Regular opening hours shown on the homepage |
 | `afterhours_weekday`, `afterhours_saturday`, `afterhours_sunday` | Hours shown on the dedicated After Hours page |
 | `afterhours_phone`, `afterhours_phone_href`, `afterhours_fax` | The After Hours line's own phone/fax (separate from the main clinic number) |
@@ -83,6 +83,9 @@ copy after you save).
 
 ### What's intentionally NOT in the sheet
 
+- **The reception email address** is fixed directly in the site's code
+  rather than the sheet, so it can never be accidentally reverted to an old
+  address by a stale sheet row. Ask for help if it ever needs to change.
 - **FAQ answers #3 and #4** ("Is care available outside these hours?" and
   "How do I make an appointment?") contain live links (to the After Hours
   page, HotDoc, and your phone number). Editing these from a plain text
