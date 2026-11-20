@@ -1,111 +1,32 @@
-# Editing Website Content (No Coding Needed)
+# Editing Website Content
 
-This site is hosted on GitHub Pages, which only serves plain files — there's
-no real "backend" server it can talk to. To still let you edit the important
-business info (phone, hours, services, FAQ, etc.) without touching code, the
-site reads that content from a **Google Sheet** every time a page loads. If
-the sheet is unreachable for any reason, every page just falls back to its
-normal built-in text — nothing ever breaks.
+This site's content (phone, hours, services, FAQ, etc.) is written directly
+into the HTML files — it used to be pulled live from a Google Sheet, but that
+was removed because a stale, out-of-date Sheet kept silently overriding
+correct website text with old information.
 
-## One-time setup (takes about 5 minutes)
+## How to make a change now
 
-### 1. Create your Google Sheet
+There's no sheet to edit anymore. To change any text on the site (hours, a
+phone number, a service description, a FAQ answer, anything), either:
 
-1. Go to [Google Sheets](https://sheets.google.com) and create a **new blank
-   spreadsheet**.
-2. Open **File → Import → Upload**, and upload either
-   [`website-content.xlsx`](website-content.xlsx) (recommended — colour-coded
-   by section, so it's easier to browse) or
-   [`content-template.csv`](content-template.csv) (plain, same data) from
-   this project.
-3. When asked how to import, choose **Replace current sheet**.
+- **Ask for help making the change** — describe what should change and
+  where, and it gets edited directly in the HTML, tested, and committed.
+- **Edit the HTML yourself**, if you're comfortable with that — the text you
+  want to change is usually visible as plain text inside the relevant
+  `.html` file (`index.html`, `service.html`, `afterhours.html`, etc.).
 
-You now have a sheet with `key` and `value` columns (the `.xlsx` also has a
-`section` column, purely for your own browsing — the site ignores it). Every
-row is one piece of text on the website. **Never rename or delete anything in
-the `key` column** — that's how the site finds each piece of content. Only
-edit the `value` column.
+Either way, a change needs to be **committed and pushed to GitHub** to go
+live (unlike the old sheet, which updated instantly) — ask for a push once a
+change is made, or run `git push` yourself if you're doing it directly.
 
-If you already have a live sheet connected and just want to re-sync it to
-match the current site exactly (for example, after the content keys changed),
-repeat step 2 on your **existing** sheet instead of a blank one — Replace
-current sheet overwrites it with the up-to-date version, so your published
-CSV link in `js/content.js` keeps working without any changes there.
+## Why this changed
 
-### 2. Publish the sheet so the website can read it
-
-1. In Google Sheets: **File → Share → Publish to web**.
-2. Under "Link", make sure the correct sheet (tab) is selected.
-3. Change the format dropdown from "Web page" to **Comma-separated values
-   (.csv)**.
-4. Click **Publish**, and confirm.
-5. Copy the URL it gives you — it looks like:
-   `https://docs.google.com/spreadsheets/d/e/XXXXXXXXXXXX/pub?output=csv`
-
-### 3. Connect the website to your sheet
-
-1. Open `js/content.js` in this project.
-2. Find this line near the top:
-   ```js
-   var SHEET_CSV_URL = '';
-   ```
-3. Paste your published URL between the quotes:
-   ```js
-   var SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/XXXXXXXXXXXX/pub?output=csv';
-   ```
-4. Save the file, commit, and push to GitHub as usual.
-
-That's it — the site is now live-connected to your sheet.
-
-## Editing content going forward
-
-Just open your Google Sheet, change the text in the `value` column, and
-refresh the website. **No commit, no push, no waiting for a deploy** — the
-page fetches the sheet fresh every time someone visits, so changes appear
-immediately (it can take Google a minute or two to refresh its own published
-copy after you save).
-
-## What you can edit
-
-| Sheet keys | What it controls |
-|---|---|
-| `contact_phone`, `contact_fax`, `contact_address` | Shown in the header, footer, and contact pages on every page |
-| `contact_phone_href` | The actual `tel:` link behind the phone number — keep this in the exact format shown (`tel:+61...`) |
-| `hours_mon` … `hours_sun`, `hours_summary`, `hours_afterhours_time` | Regular opening hours shown on the homepage |
-| `afterhours_weekday`, `afterhours_saturday`, `afterhours_sunday` | Hours shown on the dedicated After Hours page |
-| `afterhours_phone`, `afterhours_phone_href`, `afterhours_fax` | The After Hours line's own phone/fax (separate from the main clinic number) |
-| `fees_note` | The billing/fees paragraph on the homepage |
-| `svc1_title`/`svc1_desc` … `svc11_title`/`svc11_desc` | The 11 general services (shown on both the homepage and Services page) |
-| `spc_gastro_title`/`spc_gastro_desc`, `spc_internal_title`/`spc_internal_desc`, `spc_paed_title`/`spc_paed_desc` | The 3 Specialist Services (Gastroenterology, Internal Medicine, Paediatrics) |
-| `ah1_title`/`ah1_desc` … `ah5_title`/`ah5_desc` | The 5 Allied Health Services |
-| `faq1_q` … `faq7_q` | All 7 FAQ questions (homepage and Contact page) |
-| `faq1_a`, `faq2_a`, `faq5_a`, `faq6_a`, `faq7_a` | 5 of the 7 FAQ answers |
-
-### What's intentionally NOT in the sheet
-
-- **The reception email address** is fixed directly in the site's code
-  rather than the sheet, so it can never be accidentally reverted to an old
-  address by a stale sheet row. Ask for help if it ever needs to change.
-- **FAQ answers #3 and #4** ("Is care available outside these hours?" and
-  "How do I make an appointment?") contain live links (to the After Hours
-  page, HotDoc, and your phone number). Editing these from a plain text
-  sheet would silently break those links, so they're edited directly in the
-  HTML instead — ask for help if they need to change.
-- **Adding or removing an entire service/FAQ card** isn't supported by the
-  sheet — the number of cards is fixed in the page's HTML. The sheet can
-  only change the *text* of the existing cards. Adding a new card needs a
-  small code change.
-- Page headings, navigation labels, and everything not listed in the table
-  above are still plain text in the HTML files, same as before.
-
-## Troubleshooting
-
-- **Nothing on the site is updating** — double-check the published CSV URL
-  in `js/content.js` is correct, and that you published the *value* column
-  correctly (open the URL directly in a browser — it should download or
-  show plain comma-separated text, not a sign-in page).
-- **A specific row isn't working** — the `key` in your sheet must match
-  exactly (no extra spaces, correct spelling) one of the keys listed above.
-- Check your browser's console (F12) on the live site — if the sheet can't
-  be reached, you'll see a friendly warning there, and the page will just
-  show its normal default text.
+The sheet was meant to let non-technical edits happen without touching code.
+In practice, rows were often left with old values (wrong hours, an old email
+address, etc.) for weeks without being updated, and because the sheet always
+took priority over the website's own text, those stale rows kept silently
+showing the wrong information to visitors — including once during active
+hours information that could matter in a genuine emergency. Static text in
+the code can't go stale the same way: every change is deliberate, reviewed,
+and takes effect for everyone at once.
